@@ -46,7 +46,7 @@ wei-resume (路由入口)
 ## 目录结构
 
 ```
-code2resume/
+path/
 ├── wei-resume/                    路由技能（入口）
 │   ├── SKILL.md                   命令路由 + 公共规则 + schema 迁移
 │   └── references/
