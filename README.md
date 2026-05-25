@@ -1,10 +1,16 @@
-# wei-resume — 代码转简历技能包
+# wei-resume — AI 驱动的代码转简历工具 | Code-to-Resume AI Toolkit
 
-从源码和 Git 历史中自动提取项目经验，结合个人档案和目标岗位 JD，生成有数据支撑的定向简历。
+> **从代码仓库自动生成精准简历，用数据说话，拒绝编造。**
+> Generate data-driven resumes from your codebase and Git history — no fabrication, every metric is sourced.
+
+**Keywords**: 简历生成 / resume generator, 代码分析 / code analysis, Git 历史挖掘 / Git mining, 求职工具 / job search tool, AI 简历 / AI resume, Claude Code skill, 程序员简历 / developer resume, ATS 优化 / ATS optimization
 
 ```
 profile（我是谁）+ code（我做了什么）+ target（他要什么） → 精准简历
+profile (who I am) + code (what I built) + target (what they want) → targeted resume
 ```
+
+**一句话介绍 / TL;DR**: 扫描你的代码仓库，从 Git commit、代码结构、技术栈中自动提取量化成果，结合目标岗位 JD 生成定向简历。所有数据可溯源，禁止 AI 编造。
 
 ## 快速开始
 
