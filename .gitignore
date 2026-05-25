@@ -1,5 +1,6 @@
 .claude/
 .omc/
+docs/
 state.json
 node_modules/
 *.log
