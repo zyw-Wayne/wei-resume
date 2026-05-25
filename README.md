@@ -3,14 +3,15 @@
 > **从代码仓库自动生成精准简历，用数据说话，拒绝编造。**
 > Generate data-driven resumes from your codebase and Git history — no fabrication, every metric is sourced.
 
-**Keywords**: 简历生成 / resume generator, 代码分析 / code analysis, Git 历史挖掘 / Git mining, 求职工具 / job search tool, AI 简历 / AI resume, Claude Code skill, 程序员简历 / developer resume, ATS 优化 / ATS optimization
+**Keywords**: 简历生成 / resume generator, 代码分析 / code analysis, Git 历史挖掘 / Git mining, 求职工具 / job search tool, AI 简历 / AI resume, Claude Code skill, 程序员简历 / developer resume, ATS 优化 / ATS optimization, 历史简历导入 / resume import, 简历优化 / resume enhancement
 
 ```
 profile（我是谁）+ code（我做了什么）+ target（他要什么） → 精准简历
 profile (who I am) + code (what I built) + target (what they want) → targeted resume
 ```
 
-**一句话介绍 / TL;DR**: 扫描你的代码仓库，从 Git commit、代码结构、技术栈中自动提取量化成果，结合目标岗位 JD 生成定向简历。所有数据可溯源，禁止 AI 编造。
+**一句话介绍 / TL;DR**: 扫描代码仓库自动提取量化成果，导入已有简历补充个人档案，结合目标岗位 JD 生成定向简历。所有数据可溯源，禁止 AI 编造。
+Scan your codebase to extract achievements, import existing resumes to enrich your profile, and generate targeted resumes matched to job descriptions. Every metric is sourced — no AI fabrication.
 
 ## 快速开始
 
@@ -18,15 +19,26 @@ profile (who I am) + code (what I built) + target (what they want) → targeted 
 # 最快路径：零访谈，纯代码推断
 wei-resume ./my-project --quick
 
+# 有历史简历？导入后自动补全档案
+wei-resume init --import resume.pdf          # 导入 PDF 简历，自动提取+诊断+追问
+wei-resume init --import resume.docx         # 支持 PDF / DOCX / MD / TXT / HTML
+
 # 完整流程
-wei-resume init                    # 1. 建立个人档案（三轮访谈）
+wei-resume init                    # 1. 建立个人档案（三轮访谈，可选导入历史简历）
 wei-resume scan ./my-project       # 2. 扫描代码仓库
 wei-resume target --jd "JD文本"    # 3. 设定目标岗位
 wei-resume generate --target 字节  # 4. 生成定向简历
+
+# 补充外部数据
+wei-resume import --github <user>            # 导入 GitHub 画像（star、PR、贡献热力图）
+wei-resume import --leetcode <user>          # 导入 LeetCode 排名和解题数据
+wei-resume import --articles <url>           # 导入技术博客文章
 ```
 
 ## 核心特性
 
+- **历史简历导入** — 支持 PDF / DOCX / MD / TXT / HTML，自动提取结构化信息，智能合并到个人档案，导入后自动诊断（量化度、具体性、成果导向、ATS 友好度）并针对性追问补充
+- **外部数据补充** — 一键导入 GitHub 画像（star/PR/贡献热力图）、LeetCode 排名、技术博客、专利论文、Stack Overflow、掘金等，根据目标 JD 智能选择展示重点
 - **代码智能分析** — 从 Git 历史、代码结构、Commit Message 中提取量化成果
 - **数据准确性保障** — 所有数据标注来源（git_verifiable / code_inferable / user_confirmed），禁止编造
 - **三阶段生成引擎** — 规划 → 逐段生成 → 组装校验，Section 级 context 隔离
@@ -134,9 +146,20 @@ wei-resume <path> [paths...]       # 快捷方式：扫描 + 生成
 | 命令 | 说明 |
 |------|------|
 | `wei-resume init` | 三轮访谈建档 |
+| `wei-resume init --import <file>` | 导入历史简历（PDF/DOCX/MD/TXT/HTML），自动提取+诊断+追问 |
+| `wei-resume init --update` | 增量更新已有档案 |
 | `wei-resume scan <path>` | 扫描代码仓库 |
 | `wei-resume target --jd "..."` | 添加目标岗位 |
-| `wei-resume import --github <user>` | 导入 GitHub 画像 |
+| `wei-resume import --github <user>` | 导入 GitHub 画像（star/PR/贡献热力图） |
+| `wei-resume import --github <user> --depth full` | 深度分析 GitHub（PR/Issue 详情） |
+| `wei-resume import --leetcode <user>` | 导入 LeetCode 排名和解题数据 |
+| `wei-resume import --stackoverflow <user-id>` | 导入 Stack Overflow 声望和回答 |
+| `wei-resume import --juejin <user>` | 导入掘金画像 |
+| `wei-resume import --articles <url>` | 导入技术博客主页（全部文章） |
+| `wei-resume import --article <url>` | 导入单篇文章 |
+| `wei-resume import --patent <number>` | 导入专利 |
+| `wei-resume import --paper <title>` | 导入学术论文 |
+| `wei-resume import --feedback <file>` | 导入绩效评价 / 同事评价 |
 | `wei-resume generate` | 生成简历 |
 | `wei-resume edit --section projects` | 局部再生成 |
 | `wei-resume status` | 查看当前状态 |
