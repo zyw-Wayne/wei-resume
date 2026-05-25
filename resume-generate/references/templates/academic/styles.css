@@ -1,0 +1,294 @@
+/* ============================================================
+   Academic Template — Scholarly, Publication-Focused
+   ============================================================ */
+
+/* ---------- Page & Base ---------- */
+@page {
+  size: A4;
+  margin: 2.5cm 2.5cm;
+}
+
+:root {
+  --font-main: "Times New Roman", "Noto Serif SC", Georgia, serif;
+  --color-text: #000;
+  --color-bg: #fff;
+  --line-height: 1.5;
+  --font-size-base: 11pt;
+  --font-size-name: 18pt;
+  --font-size-title: 11pt;
+  --font-size-section: 12pt;
+  --font-size-small: 9.5pt;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-main);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height);
+  color: var(--color-text);
+  background: var(--color-bg);
+  max-width: 210mm;
+  margin: 0 auto;
+}
+
+/* ---------- Header (academic centered) ---------- */
+.resume-header {
+  text-align: center;
+  margin-bottom: 1.5em;
+}
+
+.resume-header .name {
+  font-size: var(--font-size-name);
+  font-weight: 700;
+  font-variant: small-caps;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.15em;
+}
+
+.resume-header .title {
+  font-size: var(--font-size-title);
+  font-style: italic;
+  color: #333;
+  margin-bottom: 0.3em;
+}
+
+.resume-header .contact-info {
+  font-size: var(--font-size-small);
+  color: #333;
+}
+
+.resume-header .contact-info span + span::before {
+  content: " · ";
+  margin: 0 0.3em;
+}
+
+/* ---------- Section Titles (underline decoration) ---------- */
+.resume-section {
+  margin-bottom: 1.2em;
+}
+
+.resume-section > h2 {
+  font-size: var(--font-size-section);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding-bottom: 0.2em;
+  border-bottom: 1.5px solid #000;
+  margin-bottom: 0.6em;
+}
+
+/* ---------- Education (prominent) ---------- */
+.education-entry {
+  margin-bottom: 0.8em;
+}
+
+.education-entry .degree {
+  font-weight: 700;
+  font-size: var(--font-size-base);
+}
+
+.education-entry .school {
+  font-style: italic;
+}
+
+.education-entry .details {
+  font-size: var(--font-size-small);
+  color: #333;
+  margin-top: 0.15em;
+}
+
+.education-entry .date {
+  float: right;
+  font-size: var(--font-size-small);
+}
+
+/* ---------- Publications (citation format, hanging indent) ---------- */
+.publication-entry {
+  padding-left: 2em;
+  text-indent: -2em;
+  margin-bottom: 0.6em;
+  font-size: var(--font-size-base);
+}
+
+.publication-entry .authors {
+  font-variant: normal;
+}
+
+.publication-entry .pub-title {
+  font-style: italic;
+}
+
+.publication-entry .venue {
+  font-weight: normal;
+}
+
+.publication-entry .year {
+  font-weight: 600;
+}
+
+/* Number prefix for citations */
+.publication-list {
+  counter-reset: pub-counter;
+  list-style: none;
+  padding: 0;
+}
+
+.publication-list li {
+  counter-increment: pub-counter;
+  padding-left: 2.5em;
+  text-indent: -2.5em;
+  margin-bottom: 0.5em;
+}
+
+.publication-list li::before {
+  content: "[" counter(pub-counter) "] ";
+  font-weight: 600;
+}
+
+/* ---------- Research (abstract style, indented) ---------- */
+.research-entry {
+  margin-bottom: 1em;
+}
+
+.research-entry .research-title {
+  font-weight: 700;
+  font-size: var(--font-size-base);
+}
+
+.research-entry .research-period {
+  float: right;
+  font-size: var(--font-size-small);
+}
+
+.research-entry .research-abstract {
+  margin-top: 0.3em;
+  margin-left: 1.5em;
+  font-size: var(--font-size-base);
+  text-align: justify;
+  line-height: 1.55;
+}
+
+.research-entry .research-keywords {
+  margin-top: 0.2em;
+  margin-left: 1.5em;
+  font-size: var(--font-size-small);
+  font-style: italic;
+}
+
+/* ---------- Experience Entry ---------- */
+.entry {
+  margin-bottom: 0.8em;
+}
+
+.entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.entry-title {
+  font-weight: 700;
+}
+
+.entry-org {
+  font-style: italic;
+}
+
+.entry-date {
+  font-size: var(--font-size-small);
+  white-space: nowrap;
+}
+
+.entry-bullets {
+  list-style: disc;
+  padding-left: 1.5em;
+  margin-top: 0.2em;
+}
+
+.entry-bullets li {
+  margin-bottom: 0.15em;
+}
+
+/* ---------- Nested Sub-Bullets (hierarchical) ---------- */
+.entry-bullets ul {
+  list-style: disc;
+  padding-left: 1.5em;
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+.entry-bullets ul li {
+  font-size: 10pt;
+  margin-bottom: 0.1em;
+  list-style-type: circle;
+}
+
+/* ---------- Background Paragraph ---------- */
+.entry-summary {
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+  margin-bottom: 0.25em;
+  text-align: justify;
+}
+
+/* ---------- Skills (categorized list) ---------- */
+.skill-category-group {
+  margin-bottom: 0.5em;
+}
+
+.skill-category-title {
+  font-weight: 700;
+  font-size: var(--font-size-base);
+  display: inline;
+}
+
+.skill-category-title::after {
+  content: ": ";
+}
+
+.skill-category-items {
+  display: inline;
+  font-size: var(--font-size-base);
+}
+
+/* ---------- Summary ---------- */
+.summary {
+  margin-bottom: 1em;
+  text-align: justify;
+  line-height: 1.55;
+}
+
+/* ---------- Links ---------- */
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+/* ---------- Print Styles ---------- */
+@media print {
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .resume-section > h2 {
+    page-break-after: avoid;
+  }
+
+  .entry,
+  .publication-entry,
+  .research-entry,
+  .education-entry {
+    page-break-inside: avoid;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}

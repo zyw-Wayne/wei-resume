@@ -1,0 +1,283 @@
+/* ============================================================
+   Modern Template — Two-Column, Tech Blue Accent
+   ============================================================ */
+
+/* ---------- Page & Base ---------- */
+@page {
+  size: A4;
+  margin: 0;
+}
+
+:root {
+  --accent-color: #2563eb;
+  --accent-light: #dbeafe;
+  --accent-dark: #1e40af;
+  --font-main: "Inter", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+  --color-text: #1f2937;
+  --color-text-light: #4b5563;
+  --color-bg: #fff;
+  --color-left-bg: #f3f4f6;
+  --line-height: 1.5;
+  --font-size-base: 10.5pt;
+  --font-size-name: 22pt;
+  --font-size-section: 12pt;
+  --font-size-small: 9pt;
+  --left-width: 30%;
+  --right-width: 70%;
+  --page-padding: 2cm;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-main);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height);
+  color: var(--color-text);
+  background: var(--color-bg);
+  max-width: 210mm;
+  margin: 0 auto;
+}
+
+/* ---------- Two-Column Layout ---------- */
+.resume-container {
+  display: flex;
+  min-height: 297mm;
+}
+
+.column-left {
+  width: var(--left-width);
+  background: var(--color-left-bg);
+  padding: var(--page-padding) 1.2cm;
+  flex-shrink: 0;
+}
+
+.column-right {
+  width: var(--right-width);
+  padding: var(--page-padding) 1.5cm var(--page-padding) 1.2cm;
+}
+
+/* ---------- Header (right column, left-aligned with color bar) ---------- */
+.resume-header {
+  border-left: 4px solid var(--accent-color);
+  padding-left: 0.8em;
+  margin-bottom: 1.2em;
+}
+
+.resume-header .name {
+  font-size: var(--font-size-name);
+  font-weight: 800;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+.resume-header .title {
+  font-size: var(--font-size-base);
+  color: var(--accent-color);
+  font-weight: 600;
+  margin-top: 0.15em;
+}
+
+.resume-header .contact-info {
+  font-size: var(--font-size-small);
+  color: var(--color-text-light);
+  margin-top: 0.4em;
+}
+
+.resume-header .contact-info span + span::before {
+  content: " | ";
+  margin: 0 0.3em;
+}
+
+/* ---------- Section Titles ---------- */
+.resume-section > h2 {
+  font-size: var(--font-size-section);
+  font-weight: 700;
+  color: var(--accent-color);
+  margin-bottom: 0.5em;
+  padding-bottom: 0.2em;
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.column-left .resume-section > h2 {
+  font-size: 11pt;
+  border-bottom-width: 1.5px;
+}
+
+.resume-section {
+  margin-bottom: 1.2em;
+}
+
+/* ---------- Experience / Project Entry ---------- */
+.entry {
+  margin-bottom: 0.9em;
+  padding: 0.5em 0.6em;
+  border-radius: 4px;
+  background: #fafbfc;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.entry-title {
+  font-weight: 700;
+}
+
+.entry-org {
+  color: var(--color-text-light);
+}
+
+.entry-date {
+  font-size: var(--font-size-small);
+  color: var(--color-text-light);
+  white-space: nowrap;
+}
+
+.entry-bullets {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0.3em;
+}
+
+.entry-bullets li::before {
+  content: "▸";
+  color: var(--accent-color);
+  margin-right: 0.4em;
+  font-size: 0.85em;
+}
+
+.entry-bullets li {
+  margin-bottom: 0.15em;
+}
+
+/* ---------- Nested Sub-Bullets (hierarchical) ---------- */
+.entry-bullets ul {
+  list-style: none;
+  padding-left: 1.2em;
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+.entry-bullets ul li::before {
+  content: "–";
+  color: var(--accent-color);
+  margin-right: 0.35em;
+  font-size: 0.85em;
+  opacity: 0.7;
+}
+
+.entry-bullets ul li {
+  font-size: 9pt;
+  margin-bottom: 0.08em;
+  color: var(--color-text-light);
+}
+
+/* ---------- Background Paragraph ---------- */
+.entry-summary {
+  color: var(--color-text-light);
+  font-size: 9.5pt;
+  line-height: 1.5;
+  margin-bottom: 0.3em;
+}
+
+/* ---------- Skills (grouped badges) ---------- */
+.skill-group {
+  margin-bottom: 0.7em;
+}
+
+.skill-group-title {
+  font-weight: 600;
+  font-size: var(--font-size-small);
+  color: var(--color-text);
+  margin-bottom: 0.25em;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.skill-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3em;
+}
+
+.skill-badge {
+  display: inline-block;
+  padding: 0.15em 0.55em;
+  background: var(--accent-light);
+  color: var(--accent-dark);
+  border-radius: 3px;
+  font-size: var(--font-size-small);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* ---------- Education ---------- */
+.education-entry {
+  margin-bottom: 0.6em;
+}
+
+.education-entry .degree {
+  font-weight: 600;
+}
+
+.education-entry .school {
+  color: var(--color-text-light);
+  font-size: var(--font-size-small);
+}
+
+/* ---------- AI Capability (left column) ---------- */
+.ai-capability .ai-item {
+  margin-bottom: 0.4em;
+  font-size: var(--font-size-small);
+}
+
+/* ---------- Summary ---------- */
+.summary {
+  margin-bottom: 1em;
+  color: var(--color-text-light);
+  line-height: 1.6;
+}
+
+/* ---------- Links ---------- */
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Print Styles ---------- */
+@media print {
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .column-left {
+    background: var(--color-left-bg) !important;
+  }
+
+  .entry {
+    box-shadow: none;
+    page-break-inside: avoid;
+  }
+
+  .resume-section > h2 {
+    page-break-after: avoid;
+  }
+
+  .skill-badge {
+    background: var(--accent-light) !important;
+  }
+}
