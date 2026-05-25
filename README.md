@@ -205,7 +205,3 @@ wei-resume <path> [paths...]       # 快捷方式：扫描 + 生成
 - chrome-devtools MCP（抓取招聘链接）
 - GitHub MCP（可选，GitHub 画像分析）
 - 无外部脚本依赖
-
-## 设计文档
-
-- [V3 设计方案](docs/plans/2026-04-19-code2resume-design-v3.md)
