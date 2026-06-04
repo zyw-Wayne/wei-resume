@@ -90,6 +90,8 @@ Each subagent independently processes all sections defined in resume-plan.json:
 
 **Output:** `sections/<template>/<style>/<id>.md` files (one Markdown file per section per combination)
 
+**Kami special handling:** The kami template does not use style variants (tech/hr/full). It generates a single output per language. Phase 2 dispatches one subagent for kami (not three). The subagent uses the `full` style as baseline, with content compressed to fit 2 pages. Output is `sections/kami/full/<id>.md`.
+
 **Plugin interface:** Each section plugin defines:
 - Required data fields from state.json
 - Section-specific formatting rules
@@ -159,26 +161,50 @@ All templates share common v2 defaults:
 | `project_format` | background-paragraph-plus-subbullets |
 | `experience_format` | overview-bullets |
 
-Available templates: `modern`, `classic`, `compact`, `academic`. When `--template all` is specified, Phase 2 dispatches across all four templates.
+**kami overrides**: `page_limit: 2` (fixed), `experience_format: three-step-timeline`, `project_format: three-part-table`, `skills_display: label-description-rows`. See `templates/kami/manifest.md`.
+
+Available templates: `modern`, `classic`, `compact`, `academic`, `kami`. When `--template all` is specified, Phase 2 dispatches across all five templates.
+
+### Kami Template (Premium Visual Output)
+
+The `kami` template uses Kami's professional typesetting system — warm parchment canvas, ink-blue accent, serif-led hierarchy, WeasyPrint PDF generation. It produces the highest visual quality among all templates.
+
+**Key differences from other templates:**
+- Uses a pre-built HTML template with `{{PLACEHOLDER}}` syntax (not freeform HTML generation)
+- Phase 3 fills placeholders from section data (template-filling assembly, see phase3-assembly.md)
+- Strict 2-page A4 (not 3 pages) — content must be compressed accordingly
+- WeasyPrint for PDF (not browser print-to-PDF)
+- Dense variant (`resume--dense` class) for 5+ projects
+- Conditional page 2 sections: open-source, ai-capability, influence are removed if no data
+
+**Manifest:** `references/templates/kami/manifest.md`
+**Templates:** `references/templates/kami/template-cn.html`, `references/templates/kami/template-en.html`
+**Placeholder mapping:** `references/templates/kami/placeholder-mapping.md`
 
 ## Command Syntax
 
 ```
 wei-resume generate [options]
   --target <name|all>   Target position/JD to tailor for (default: all; _general when no target)
-  --template <name|all> modern | classic | compact | academic | all (default: all)
+  --template <name|all> modern | classic | compact | academic | kami | all (default: all)
   --style <name|all>    tech | hr | full | all (default: all)
-  --pages <n>           Target page count (default: 3, overrides template page_limit)
+  --pages <n>           Target page count (default: 3, overrides template page_limit; kami always uses 2)
   --project <names>     Comma-separated project filter (overrides smart selection)
   --format <type>       Output format: md | html | pdf | all (default: md+html)
   --lang <code>         Output language: zh | en | zh-en (default: zh)
   --ats                 Generate ATS-optimized version
   --redact              Redact sensitive company/project names
   --preserve-edits      Preserve manual edits (default: true)
-  --color <scheme>      Color scheme for HTML output
+  --color <scheme>      Color scheme for HTML output (kami ignores this — uses its own palette)
   -i                    Interactive mode (pause for confirmation at each phase)
   -o <path>             Output directory (default: ~/resumes/output/)
 ```
+
+**Kami-specific notes:**
+- `--pages` is ignored for kami; it always renders 2 pages
+- `--color` is ignored for kami; it uses its own parchment + ink-blue palette
+- `--format pdf` for kami uses WeasyPrint (requires `pip install weasyprint`)
+- `--lang zh` uses `template-cn.html`; `--lang en` uses `template-en.html`
 
 ### Output Directory Structure
 
@@ -198,10 +224,18 @@ wei-resume generate [options]
       ...
     academic/
       ...
+    kami/                      # kami template (no style variants)
+      resume.md
+      resume.html
+      resume.pdf               # WeasyPrint-generated PDF
   <target-name>/               # when --target is specified
     modern/
       tech.md
       ...
+    kami/
+      resume.md
+      resume.html
+      resume.pdf
 ```
 
 ## Interactive Mode Flow (-i)

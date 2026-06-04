@@ -57,3 +57,24 @@
 **基础设施：** PostgreSQL / Redis / Kubernetes / Docker / AWS
 **AI 工程：** GitHub Copilot / Prompt Engineering / RAG
 ```
+
+## Kami 模板输出格式
+
+当 `--template kami` 时，skills 输出 5 行「标签 + 具体示例」结构（非技术栈列表）。每行回答「你会什么 + 在哪用过」：
+
+```markdown
+<!-- KAMI:SKILLS -->
+1. **系统架构** · 从零设计微服务架构，服务拆分 + API 网关 + 服务发现，支撑 3 个核心业务系统
+2. **性能优化** · 主导前端性能治理，首屏加载从 4.2s 降至 1.1s，LCP P95 稳定在 1.5s 以内
+3. **AI 工程** · 构建 RAG + Agent 混合架构，集成 Claude API，实现智能客服自动应答率 65%
+4. **团队管理** · 带领 8 人团队，建立 Code Review + 技术分享机制，2 名成员在 12 个月内晋升
+5. **工程效能** · 搭建 CI/CD 流水线 + 自动化测试体系，部署频率从周级提升至日级
+<!-- /KAMI:SKILLS -->
+```
+
+**Kami skills 规则：**
+- 5 行固定，不多不少
+- 每行格式：`标签 · 具体示例（含数字）`
+- 标签 ≤4 个字（CN）/ ≤2 个词（EN），用 `<span class="em-brand">` 高亮示例中的关键能力词
+- 示例必须包含至少一个可量化指标或具体成果
+- 不列技术栈列表（那是其他模板的 skills 展示方式）

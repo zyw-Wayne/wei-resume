@@ -63,6 +63,7 @@ Remaining projects are placed in `other_projects[]` for one-liner mention at the
 ## Page Budget Allocation
 
 - Total budget from `--pages` parameter (default: 3 pages, ~60 lines per page for zh, ~55 for en)
+- **kami exception**: When kami is in the template matrix, always use 2-page budget regardless of `--pages`. Generate a separate 2-page plan for kami (4-5 projects, compressed line targets). The `--pages` value applies to non-kami templates only.
 - Allocate percentage per section based on content weight:
 
 | Section | Budget % | Notes |

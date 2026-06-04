@@ -34,3 +34,21 @@
 
 ## 输出格式
 纯 Markdown，写入 sections/ai-capability.md
+
+## Kami 模板输出格式
+
+当 `--template kami` 时，ai-capability 输出 3 张 conviction 卡片（3 列网格）：
+
+```markdown
+<!-- KAMI:AI-CARDS -->
+1. **2023** · 首个 Agent 落地：基于 Claude API 构建智能客服 Agent，自动应答率 65%，人工介入降低 40%
+2. **2024** · Skills 体系搭建：为 Claude Code 开发 12 个 Custom Skills，覆盖代码审查、测试生成、文档编写
+3. **2025** · AI 工程化输出：撰写 Agent 开发系列文章，累计 5 万+ 阅读，受邀在 QCon 演讲
+<!-- /KAMI:AI-CARDS -->
+```
+
+**Kami ai-capability 规则：**
+- 3 张卡片，每张格式：`**年份** · 标题：具体行动 + 量化结果`
+- 每张卡片 body ≤80 字（CN）/ ≤40 词（EN）
+- 标题需体现判断力（不只是"使用了 AI"，而是"做出了什么 AI 相关的判断"）
+- 如 AI level = 0，整个 section 不输出（Phase 3 会删除对应 HTML 块）

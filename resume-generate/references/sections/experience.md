@@ -82,3 +82,19 @@ Experience 与 Projects 各有分工，内容**不重叠**：
 
 ## 输出格式
 纯 Markdown，写入 sections/experience.md
+
+## Kami 模板输出格式
+
+当 `--template kami` 时，experience 的职责发生变化：工作经历的高层概括由 header 插件的 `<!-- KAMI:TIMELINE -->` 承担（3 步职业弧线），experience 插件**不再重复输出**。
+
+experience 插件在 kami 模式下仅负责：
+1. 提供 `{{EXPERIENCE_DATE_RANGE}}` 值（如 "2019 - 至今（8 年）"）
+2. 确认时间线 3 步的年份和标题（与 header 的 timeline 一致）
+
+```markdown
+<!-- KAMI:EXPERIENCE_META -->
+**日期范围：** 2019 - 至今（8 年）
+<!-- /KAMI:EXPERIENCE_META -->
+```
+
+时间线内容（3 步弧线）由 header.md 的 `<!-- KAMI:TIMELINE -->` 块输出，experience 插件不需要重复生成。

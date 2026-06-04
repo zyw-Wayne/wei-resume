@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>{{NAME}} · Resume</title>
+<meta name="author" content="{{NAME}}">
+<meta name="description" content="{{DESCRIPTION}}">
+<meta name="keywords" content="{{KEYWORDS}}">
+<meta name="generator" content="code2resume + Kami">
+<style>
+  /* ═══════════════════════════════════════════════════════
+     Kami Design System — Parchment + Ink-Blue + Serif (EN)
+     Adapted for code2resume dynamic content model
+     ═══════════════════════════════════════════════════════ */
+
+  @font-face { font-family: "JetBrains Mono"; src: url("../fonts/JetBrainsMono.woff2") format("woff2"); font-weight: 400; font-style: normal; }
+  @font-face { font-family: "JetBrains Mono"; src: url("../fonts/JetBrainsMono.woff2") format("woff2"); font-weight: 500; font-style: normal; }
+
+  @page {
+    size: A4;
+    margin: 11mm 13mm 11mm 13mm;
+    background: #f5f4ed;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --parchment: #f5f4ed;
+    --ivory:     #faf9f5;
+    --border:    #e8e6dc;
+    --border-soft: #e5e3d8;
+    --near-black: #141413;
+    --dark-warm: #3d3d3a;
+    --olive:     #504e49;
+    --stone:     #6b6a64;
+    --brand:     #1B365D;
+    --brand-tint: #EEF2F7;
+    --serif: Charter, Georgia, Palatino, "Times New Roman", serif;
+    --sans: var(--serif);
+    --mono: "JetBrains Mono", "SF Mono", "Fira Code", Consolas, Monaco, monospace;
+  }
+
+  html, body { background: var(--parchment); }
+
+  @media screen {
+    body { max-width: 210mm; margin: 0 auto; padding: 11mm 13mm; }
+  }
+
+  body {
+    color: var(--near-black);
+    font-family: var(--serif);
+    font-size: 9.4pt;
+    line-height: 1.42;
+    widows: 3;
+    orphans: 3;
+  }
+
+  .serif { font-family: var(--serif); }
+  a { color: var(--brand); text-decoration: none; }
+
+  /* HEADER */
+  .header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 3mm;
+    border-left: 2.5pt solid var(--brand);
+    border-radius: 1.5pt;
+    padding-left: 8pt;
+  }
+  .header > div:first-child { flex-shrink: 0; }
+  .name {
+    font-family: var(--serif);
+    font-size: 26pt;
+    font-weight: 500;
+    letter-spacing: -0.2pt;
+    color: var(--near-black);
+    line-height: 1;
+    display: flex;
+    align-items: baseline;
+    gap: 3mm;
+    white-space: nowrap;
+  }
+  .alias {
+    font-size: 12.5pt;
+    font-weight: 400;
+    color: var(--stone);
+    letter-spacing: 0.2pt;
+  }
+  .contact {
+    text-align: right;
+    font-size: 9pt;
+    color: var(--stone);
+    line-height: 1.5;
+    margin-bottom: -0.5mm;
+  }
+  .contact a { color: var(--dark-warm); }
+  .contact .loc { color: var(--olive); font-weight: 500; }
+  .contact .role { color: var(--brand); font-size: 10.5pt; font-weight: 500; }
+  .contact .sep { color: var(--border); margin: 0 0.4em; }
+
+  /* METRICS */
+  .metrics { display: flex; gap: 7mm; margin-bottom: 3mm; }
+  .metric {
+    flex: 1; padding: 1mm 0;
+    display: flex; align-items: baseline; gap: 1.8mm;
+    break-inside: avoid;
+  }
+  .metric-value {
+    font-family: var(--serif);
+    font-size: 14pt; font-weight: 500;
+    color: var(--brand); line-height: 1;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .metric-label { font-size: 9pt; color: var(--olive); line-height: 1.2; }
+  .metric-value .unit {
+    font-size: 10.5pt; margin-left: 0.3mm;
+    font-weight: 500; color: var(--brand);
+  }
+  .metrics--stack .metric {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5mm;
+    padding-bottom: 2mm;
+    border-bottom: 0.3pt dotted var(--border);
+  }
+
+  /* SECTION TITLE */
+  .section-title {
+    font-family: var(--serif);
+    font-size: 13pt; font-weight: 500;
+    color: var(--near-black);
+    border-left: 2.5pt solid var(--brand);
+    border-radius: 1.5pt;
+    padding: 0 0 0 8pt;
+    margin: 5mm 0 2mm 0;
+    display: flex; align-items: baseline; gap: 2.5mm;
+  }
+  .section-title .sub {
+    margin-left: auto;
+    font-family: var(--serif);
+    font-weight: 400; font-size: 9pt;
+    color: var(--stone); letter-spacing: 0.3pt;
+  }
+  section:first-of-type .section-title { margin-top: 0; }
+  .page-break > .section-title { margin-top: 0; }
+  .section-title + .skill-row { padding-top: 1.2mm; }
+  .section-title + .edu-row { padding-top: 1.2mm; }
+
+  /* SUMMARY */
+  .summary { font-size: 9.4pt; line-height: 1.42; color: var(--near-black); }
+  .summary .em-brand { color: var(--brand); }
+  .summary .hl { color: var(--brand); }
+
+  /* TIMELINE */
+  .timeline { display: flex; gap: 7mm; margin-bottom: 2mm; }
+  .tl-step {
+    flex: 1; padding: 0.8mm 0;
+    break-inside: avoid;
+  }
+  .tl-top {
+    display: flex; align-items: baseline; gap: 1.5mm;
+    margin-bottom: 0.5mm;
+  }
+  .tl-year {
+    font-family: var(--serif);
+    font-size: 11pt; font-weight: 500;
+    color: var(--brand); line-height: 1;
+  }
+  .tl-head {
+    font-size: 11pt; font-weight: 500;
+    color: var(--near-black);
+  }
+  .tl-body { font-size: 9pt; color: var(--olive); line-height: 1.45; }
+
+  /* PROJECTS */
+  .project {
+    padding: 1.6mm 0;
+    border-top: 0.4pt solid var(--border-soft);
+    break-inside: avoid;
+  }
+  .project:first-of-type { border-top: 0.4pt solid var(--border); padding-top: 1.6mm; }
+  .proj-head {
+    display: flex; align-items: baseline;
+    gap: 2mm; margin-bottom: 0.75mm;
+  }
+  .proj-name {
+    font-family: var(--serif);
+    font-size: 11pt; font-weight: 500; color: var(--near-black);
+  }
+  .proj-kind { font-size: 11pt; color: var(--olive); }
+  .proj-role {
+    font-size: 9pt; color: var(--brand); font-weight: 500;
+    margin-left: auto; background: var(--brand-tint);
+    padding: 0.4mm 1.6mm; border-radius: 2pt;
+    text-transform: uppercase; letter-spacing: 0.05pt;
+  }
+  .proj-lines { display: table; width: 100%; }
+  .proj-row { display: table-row; }
+  .proj-label {
+    display: table-cell; width: 16mm;
+    font-size: 9pt; color: var(--brand);
+    font-weight: 500; text-transform: uppercase;
+    letter-spacing: 0.2pt;
+    padding: 0.2mm 0 0.4mm 0; vertical-align: top;
+  }
+  .proj-text {
+    display: table-cell; font-size: 9pt;
+    color: var(--near-black); line-height: 1.40;
+    padding: 0 0 0.4mm 0.5mm;
+  }
+  .proj-text .hl { color: var(--brand); }
+
+  .team-culture {
+    margin-top: 2mm; padding: 1.5mm 2.5mm;
+    border-left: 1.4pt solid var(--brand);
+    border-radius: 2pt;
+    font-size: 9pt; color: var(--olive); line-height: 1.40;
+    break-inside: avoid;
+  }
+  .team-culture .hl { color: var(--brand); }
+
+  /* OTHER PROJECTS */
+  .other-projects {
+    margin-top: 1.5mm; padding: 1.2mm 0;
+    border-top: 0.3pt dotted var(--border);
+    font-size: 9pt; color: var(--olive); line-height: 1.45;
+  }
+  .other-projects .hl { color: var(--brand); }
+
+  /* PAGE 2 BREAK */
+  .page-break { break-before: page; }
+
+  /* OPEN SOURCE */
+  .os-intro {
+    font-size: 9.4pt; line-height: 1.40;
+    color: var(--near-black);
+    padding: 0; margin: 1.2mm 0 2mm 0;
+    break-inside: avoid;
+  }
+  .os-intro .hl { color: var(--brand); }
+  .os-intro .strong { color: var(--near-black); }
+
+  .os-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 9mm; row-gap: 1mm;
+  }
+  .os-item {
+    display: flex; align-items: baseline;
+    gap: 2mm; padding: 1mm 0;
+    border-bottom: 0.3pt dotted var(--border);
+    break-inside: avoid;
+  }
+  .os-item:last-child,
+  .os-item:nth-last-child(2):nth-child(odd) { border-bottom: none; }
+  .os-name {
+    font-family: var(--serif);
+    font-size: 10.5pt; font-weight: 500;
+    flex-shrink: 0; min-width: 18mm;
+  }
+  .os-name a { color: var(--brand); }
+  .os-desc { font-size: 9pt; color: var(--olive); line-height: 1.40; flex: 1; }
+  .os-star {
+    font-size: 9pt; color: var(--dark-warm);
+    font-weight: 500; white-space: nowrap; flex-shrink: 0;
+    min-width: 10mm; text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  .os-star.big { color: var(--brand); font-size: 9.2pt; }
+
+  .os-highlight {
+    margin-top: 2.5mm;
+    padding: 1.8mm 2.8mm;
+    background: var(--brand-tint);
+    border-left: 1.4pt solid var(--brand);
+    border-radius: 2pt;
+    font-size: 9pt; line-height: 1.45;
+    color: var(--near-black);
+    break-inside: avoid;
+  }
+  .os-highlight .hl { color: var(--brand); }
+  .os-highlight .tag {
+    display: inline-block;
+    background: var(--brand); color: var(--ivory);
+    font-size: 9pt; font-weight: 500;
+    padding: 0.2mm 1.5mm; border-radius: 2pt;
+    margin-right: 1.2mm; letter-spacing: 0.2pt;
+    transform: translateY(-0.2mm);
+  }
+
+  /* AI CAPABILITY */
+  .convictions {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3mm; margin-top: 1.2mm;
+  }
+  .conv-card {
+    padding: 0 2mm 0 0;
+    break-inside: avoid;
+  }
+  .conv-head {
+    font-family: var(--serif);
+    font-size: 10pt; font-weight: 500;
+    color: var(--near-black); margin-bottom: 0.9mm;
+    display: flex; align-items: baseline; gap: 2mm;
+  }
+  .conv-head .year {
+    color: var(--brand); font-weight: 500; font-size: 9pt;
+    font-variant-numeric: tabular-nums;
+  }
+  .conv-body {
+    font-size: 9pt; color: var(--olive);
+    line-height: 1.45;
+  }
+  .conv-body .hl { color: var(--brand); }
+  .conv-body .em-brand { color: var(--brand); }
+  .ai-card-head { font-family: var(--serif); font-size: 10pt; font-weight: 500; color: var(--near-black); margin-bottom: 0.9mm; display: flex; align-items: baseline; gap: 2mm; }
+  .ai-card-head .year { color: var(--brand); font-weight: 500; font-size: 9pt; font-variant-numeric: tabular-nums; }
+  .ai-card-body { font-size: 9pt; color: var(--olive); line-height: 1.45; }
+  .ai-card-body .hl { color: var(--brand); }
+  .ai-card-body .em-brand { color: var(--brand); }
+
+  /* INFLUENCE */
+  .handle-strip {
+    padding: 0; margin: 1.2mm 0 2mm 0;
+    display: flex; align-items: baseline; gap: 3.5mm;
+    break-inside: avoid;
+  }
+  .handle-strip .handle {
+    font-family: var(--serif);
+    font-size: 10pt; font-weight: 500; color: var(--brand);
+    flex-shrink: 0;
+  }
+  .handle-strip .follower { font-size: 9pt; color: var(--stone); flex-shrink: 0; }
+  .handle-strip .desc { font-size: 9pt; color: var(--olive); line-height: 1.45; flex: 1; }
+
+  .impact-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 6mm; }
+  .inf-block-title {
+    margin-top: 2.5mm;
+    font-family: var(--serif);
+    font-size: 10pt; font-weight: 500;
+    color: var(--near-black);
+    margin-bottom: 1.5mm; padding-bottom: 0.5mm;
+    border-bottom: 0.3pt dotted var(--border);
+    display: flex; align-items: baseline; gap: 2mm;
+  }
+  .inf-block-title .small {
+    font-family: var(--serif);
+    font-size: 9pt; color: var(--stone);
+    font-weight: 400; letter-spacing: 0.2pt;
+  }
+  .art-row {
+    padding: 1.8mm 0;
+    border-bottom: 0.3pt dotted var(--border-soft);
+  }
+  .talk-row {
+    display: flex; justify-content: space-between;
+    align-items: flex-start;
+    gap: 2mm; padding: 1.8mm 0;
+    border-bottom: 0.3pt dotted var(--border-soft);
+  }
+  .art-row:last-of-type, .talk-row:last-of-type { border-bottom: none; }
+  .art-header {
+    display: flex; align-items: baseline;
+    justify-content: space-between;
+    gap: 2mm; padding-right: 3mm;
+  }
+  .art-title, .talk-title {
+    font-size: 9pt; color: var(--near-black);
+    font-weight: 500; line-height: 1.40;
+    flex: 1 1 auto; min-width: 0;
+  }
+  .art-stats, .talk-venue {
+    font-size: 9pt; color: var(--stone);
+    line-height: 1.40; margin-top: 0.5mm;
+    white-space: nowrap;
+  }
+  .art-stats .em-brand { color: var(--brand); }
+  .art-stats .lang-cn, .art-stats .lang-en {
+    display: inline-block;
+    font-size: 9pt; font-weight: 500;
+    margin-right: 0.5mm; letter-spacing: 0.2pt;
+    color: var(--stone);
+  }
+  .art-date {
+    font-size: 9pt; color: var(--stone);
+    font-variant-numeric: tabular-nums; font-weight: 400;
+  }
+  .talk-date {
+    font-size: 9pt; color: var(--stone); font-weight: 500;
+    white-space: nowrap; font-variant-numeric: tabular-nums;
+    padding-top: 0.3mm;
+  }
+
+  /* SKILLS */
+  .skill-row {
+    display: flex; gap: 3mm; padding: 1.7mm 0;
+    border-bottom: 0.3pt dotted var(--border);
+    align-items: baseline;
+  }
+  .skill-row:last-of-type { border-bottom: none; }
+  .skill-label {
+    font-size: 9pt; font-weight: 500;
+    color: var(--brand); letter-spacing: 0.5pt;
+    width: 32mm; flex-shrink: 0; line-height: 1.36;
+    text-transform: uppercase;
+  }
+  .skill-body {
+    font-size: 9pt; color: var(--near-black);
+    line-height: 1.40; flex: 1;
+  }
+  .skill-body .em-brand { color: var(--brand); }
+
+  .no-break { break-inside: avoid; }
+
+  /* EDUCATION */
+  .edu-row {
+    display: flex; justify-content: space-between;
+    align-items: baseline; font-size: 9.5pt; padding: 1.7mm 0;
+  }
+  .edu-row .school {
+    font-family: var(--serif);
+    font-weight: 500; font-size: 11pt;
+  }
+  .edu-row .major { color: var(--olive); font-size: 9.4pt; }
+  .edu-row .date { color: var(--stone); font-variant-numeric: tabular-nums; font-size: 9pt; }
+
+  /* MONOSPACE */
+  .mono { font-family: var(--mono); }
+
+  /* TABLE */
+  table, .kami-table {
+    width: 100%; border-collapse: collapse;
+    font-size: 9pt; margin: 6pt 0; break-inside: avoid;
+  }
+  table th, .kami-table th {
+    text-align: left; font-weight: 500; color: var(--dark-warm);
+    padding: 3pt 6pt; border-bottom: 1pt solid var(--border);
+  }
+  table td, .kami-table td {
+    padding: 2pt 6pt; border-bottom: 0.3pt solid var(--border-soft);
+    vertical-align: top;
+  }
+  table.compact th, .kami-table.compact th { padding: 2pt 4pt; font-size: 8pt; }
+  table.compact td, .kami-table.compact td { padding: 1pt 4pt; font-size: 8pt; line-height: 1.4; }
+  table.financial td:not(:first-child), .kami-table.financial td:not(:first-child) {
+    text-align: right; font-variant-numeric: tabular-nums;
+  }
+  table.financial th:not(:first-child), .kami-table.financial th:not(:first-child) { text-align: right; }
+  table.striped tbody tr:nth-child(even) td, .kami-table.striped tbody tr:nth-child(even) td {
+    background: var(--ivory);
+  }
+  table .total td, .kami-table .total td {
+    font-weight: 500; border-top: 1pt solid var(--brand); border-bottom: none; color: var(--near-black);
+  }
+
+  /* DENSE VARIANT */
+  body.resume--dense { font-size: 9pt; }
+  body.resume--dense .proj-text { line-height: 1.40; }
+  body.resume--dense .tl-body { font-size: 8.5pt; }
+  body.resume--dense .section-title { margin-top: 3.5mm; margin-bottom: 1.5mm; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ PAGE 1 ═══════════ -->
+
+<!-- SECTION: header -->
+<div class="header">
+  <div>
+    <div class="name serif">{{NAME}}<span class="alias">{{ALIAS}}</span></div>
+  </div>
+  <div class="contact">
+    <span class="role">{{ROLE_TITLE}}</span>
+    <br>
+    <a href="{{GITHUB_URL}}">GitHub @{{GITHUB_ID}}</a>
+    <span class="sep">·</span>
+    <a href="{{X_URL}}">X @{{X_ID}}</a>
+    <span class="sep">·</span>
+    <a href="mailto:{{EMAIL}}">{{EMAIL}}</a>
+    <span class="sep">·</span>
+    <span class="loc">{{CITY}}, {{COUNTRY}}</span>
+  </div>
+</div>
+
+<!-- SECTION: metrics (×4) -->
+<div class="metrics">
+  <div class="metric"><span class="metric-value serif">{{M1_NUM}}<span class="unit">{{M1_UNIT}}</span></span><span class="metric-label">{{M1_LABEL}}</span></div>
+  <div class="metric"><span class="metric-value serif">{{M2_NUM}}<span class="unit">{{M2_UNIT}}</span></span><span class="metric-label">{{M2_LABEL}}</span></div>
+  <div class="metric"><span class="metric-value serif">{{M3_NUM}}<span class="unit">{{M3_UNIT}}</span></span><span class="metric-label">{{M3_LABEL}}</span></div>
+  <div class="metric"><span class="metric-value serif">{{M4_NUM}}<span class="unit">{{M4_UNIT}}</span></span><span class="metric-label">{{M4_LABEL}}</span></div>
+</div>
+
+<!-- SECTION: summary -->
+<section>
+  <div class="section-title">Summary</div>
+  <div class="summary">{{SUMMARY}}</div>
+</section>
+
+<!-- SECTION: experience (timeline + projects) -->
+<section>
+  <div class="section-title">Experience<span class="sub">{{EXPERIENCE_DATE_RANGE}}</span></div>
+
+  <div class="timeline">
+    <div class="tl-step">
+      <div class="tl-top"><div class="tl-year serif">{{TL1_YEAR}}</div><div class="tl-head">{{TL1_TITLE}}</div></div>
+      <div class="tl-body">{{TL1_DESC}}</div>
+    </div>
+    <div class="tl-step">
+      <div class="tl-top"><div class="tl-year serif">{{TL2_YEAR}}</div><div class="tl-head">{{TL2_TITLE}}</div></div>
+      <div class="tl-body">{{TL2_DESC}}</div>
+    </div>
+    <div class="tl-step">
+      <div class="tl-top"><div class="tl-year serif">{{TL3_YEAR}}</div><div class="tl-head">{{TL3_TITLE}}</div></div>
+      <div class="tl-body">{{TL3_DESC}}</div>
+    </div>
+  </div>
+
+  <!-- PROJECT_BLOCK: Phase 3 generates one block per selected project -->
+  <!--
+  <div class="project">
+    <div class="proj-head">
+      <span class="proj-name serif">{{PROJ_NAME}}</span>
+      <span class="proj-kind">· {{PROJ_TYPE}}</span>
+      <span class="proj-role">{{PROJ_ROLE}}</span>
+    </div>
+    <div class="proj-lines">
+      <div class="proj-row">
+        <div class="proj-label">Context</div>
+        <div class="proj-text">{{CONTEXT_TEXT}}</div>
+      </div>
+      <div class="proj-row">
+        <div class="proj-label">Approach</div>
+        <div class="proj-text">{{APPROACH_TEXT}}</div>
+      </div>
+      <div class="proj-row">
+        <div class="proj-label">Result</div>
+        <div class="proj-text">{{RESULT_TEXT}}</div>
+      </div>
+    </div>
+  </div>
+  -->
+  <!-- /PROJECT_BLOCK -->
+
+  <!-- OTHER_PROJECTS -->
+  <!--
+  <div class="other-projects">
+    <strong>Other projects：</strong>{{OTHER_PROJECTS_LIST}}
+  </div>
+  -->
+  <!-- /OTHER_PROJECTS -->
+
+  <!-- TEAM_CULTURE: optional -->
+  <!--
+  <div class="team-culture">
+    {{TEAM_CULTURE_TEXT}}
+  </div>
+  -->
+  <!-- /TEAM_CULTURE -->
+</section>
+
+
+<!-- ═══════════ PAGE 2 ═══════════ -->
+
+<!-- SECTION: open-source (conditional) -->
+<!--
+<section class="page-break">
+  <div class="section-title">Open Source &amp; Indie<span class="sub">{{OS_DATE_RANGE}} · {{OS_SUBTITLE}}</span></div>
+  <div class="os-intro">
+    <span class="hl">{{OS_POSITIONING}}</span>, {{OS_DESCRIPTION}}. GitHub: <span class="strong">{{STARS_TOTAL}} stars · {{FORKS_TOTAL}} forks · {{FOLLOWERS_TOTAL}} followers</span>.
+  </div>
+  <div class="os-grid">
+    <div class="os-item"><span class="os-name serif"><a href="{{OS1_URL}}">{{OS1_NAME}}</a></span><span class="os-desc">{{OS1_DESC}}</span><span class="os-star big">★ {{OS1_STARS}}</span></div>
+    <div class="os-item"><span class="os-name serif"><a href="{{OS2_URL}}">{{OS2_NAME}}</a></span><span class="os-desc">{{OS2_DESC}}</span><span class="os-star big">★ {{OS2_STARS}}</span></div>
+    <div class="os-item"><span class="os-name serif"><a href="{{OS3_URL}}">{{OS3_NAME}}</a></span><span class="os-desc">{{OS3_DESC}}</span><span class="os-star">★ {{OS3_STARS}}</span></div>
+    <div class="os-item"><span class="os-name serif"><a href="{{OS4_URL}}">{{OS4_NAME}}</a></span><span class="os-desc">{{OS4_DESC}}</span><span class="os-star">★ {{OS4_STARS}}</span></div>
+    <div class="os-item"><span class="os-name serif"><a href="{{OS5_URL}}">{{OS5_NAME}}</a></span><span class="os-desc">{{OS5_DESC}}</span><span class="os-star">★ {{OS5_STARS}}</span></div>
+    <div class="os-item"><span class="os-name serif"><a href="{{OS6_URL}}">{{OS6_NAME}}</a></span><span class="os-desc">{{OS6_DESC}}</span><span class="os-star">★ {{OS6_STARS}}</span></div>
+  </div>
+  <div class="os-highlight"><span class="tag">{{OS_HIGHLIGHT_TAG}}</span>{{OS_HIGHLIGHT_TEXT}}</div>
+</section>
+-->
+
+<!-- SECTION: ai-capability (conditional) -->
+<!--
+<section>
+  <div class="section-title">AI Judgment &amp; Action</div>
+  <div class="convictions">
+    <div class="conv-card"><div class="conv-head"><span class="year">{{AI1_YEAR}}</span>{{AI1_TITLE}}</div><div class="conv-body">{{AI1_BODY}}</div></div>
+    <div class="conv-card"><div class="conv-head"><span class="year">{{AI2_YEAR}}</span>{{AI2_TITLE}}</div><div class="conv-body">{{AI2_BODY}}</div></div>
+    <div class="conv-card"><div class="conv-head"><span class="year">{{AI3_YEAR}}</span>{{AI3_TITLE}}</div><div class="conv-body">{{AI3_BODY}}</div></div>
+  </div>
+</section>
+-->
+
+<!-- SECTION: influence (conditional) -->
+<!--
+<section>
+  <div class="section-title">Public Impact</div>
+  <div class="handle-strip">
+    <span class="handle serif">{{SOCIAL_PLATFORM}} · <a href="{{SOCIAL_URL}}">@{{SOCIAL_HANDLE}}</a></span>
+    <span class="follower">{{SOCIAL_FOLLOWERS}} followers</span>
+    <span class="desc">{{SOCIAL_DESC}}</span>
+  </div>
+  <div class="impact-grid">
+    <div>
+      <div class="inf-block-title">Selected Writing<span class="small">{{ARTICLES_SUBTITLE}}</span></div>
+      <div class="art-row"><div class="art-header"><a class="art-title" href="{{ART1_URL}}">{{ART1_TITLE}}</a><span class="art-date">{{ART1_DATE}}</span></div><div class="art-stats">{{ART1_STATS}}</div></div>
+      <div class="art-row"><div class="art-header"><a class="art-title" href="{{ART2_URL}}">{{ART2_TITLE}}</a><span class="art-date">{{ART2_DATE}}</span></div><div class="art-stats">{{ART2_STATS}}</div></div>
+    </div>
+    <div>
+      <div class="inf-block-title">Invited Talks<span class="small">{{TALKS_SUBTITLE}}</span></div>
+      <div class="talk-row"><div><div class="talk-title">{{TALK1_TITLE}}</div><div class="talk-venue">{{TALK1_VENUE}}</div></div><div class="talk-date">{{TALK1_DATE}}</div></div>
+      <div class="talk-row"><div><div class="talk-title">{{TALK2_TITLE}}</div><div class="talk-venue">{{TALK2_VENUE}}</div></div><div class="talk-date">{{TALK2_DATE}}</div></div>
+    </div>
+  </div>
+</section>
+-->
+
+<!-- SECTION: skills (×5) -->
+<section>
+  <div class="section-title">Core Skills</div>
+  <div class="skill-row"><div class="skill-label">{{SKILL1_LABEL}}</div><div class="skill-body">{{SKILL1_BODY}}</div></div>
+  <div class="skill-row"><div class="skill-label">{{SKILL2_LABEL}}</div><div class="skill-body">{{SKILL2_BODY}}</div></div>
+  <div class="skill-row"><div class="skill-label">{{SKILL3_LABEL}}</div><div class="skill-body">{{SKILL3_BODY}}</div></div>
+  <div class="skill-row"><div class="skill-label">{{SKILL4_LABEL}}</div><div class="skill-body">{{SKILL4_BODY}}</div></div>
+  <div class="skill-row"><div class="skill-label">{{SKILL5_LABEL}}</div><div class="skill-body">{{SKILL5_BODY}}</div></div>
+</section>
+
+<!-- SECTION: education -->
+<section class="no-break">
+  <div class="section-title">Education</div>
+  <div class="edu-row">
+    <div>
+      <span class="school serif">{{SCHOOL}}</span>
+      <span class="major"> · {{COLLEGE}} · {{MAJOR}} · {{EDU_NOTE}}</span>
+    </div>
+    <div class="date">{{EDU_DATE}}</div>
+  </div>
+</section>
+
+</body>
+</html>

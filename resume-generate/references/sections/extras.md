@@ -32,3 +32,11 @@ Remove in order: average-tier items → notable-tier items → entire section.
 
 ## 输出格式
 纯 Markdown 列表，写入 sections/extras.md
+
+## Kami 模板处理
+
+Kami 模板**不包含 extras section**。extras 中的内容被吸收进其他 section：
+- 开源项目 → open-source section
+- 技术文章 / 演讲 → influence section
+- 证书 / 专利 → 如有空间，嵌入 skills section 的某一行描述中
+- 如无对应 section 可吸收 → 丢弃（2 页预算无法容纳）

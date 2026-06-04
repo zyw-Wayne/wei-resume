@@ -45,6 +45,22 @@ Reduce from 4 lines to 2 lines. Never remove entirely.
 ## 输出格式
 纯 Markdown 段落（无标题），写入 sections/summary.md
 
+## Kami 模板输出格式
+
+当 `--template kami` 时，summary 长度压缩为 2 行：
+
+```markdown
+<!-- KAMI:SUMMARY -->
+现任 XX 团队技术负责人，主导 YY 系统从 0 到 1 建设。核心沉淀：Agent 架构、性能优化、工程效能。
+<!-- /KAMI:SUMMARY -->
+```
+
+**Kami summary 规则：**
+- max 80 字（CN）/ max 50 词（EN），约 2 行
+- 结构：现任职位 + 核心沉淀方向（3-4 个关键词）
+- 不写团队人数（留给 metrics）、不写具体数字（留给 projects）
+- 比标准 summary 短（标准 3-4 行 → kami 2 行）
+
 ## 注意事项
 - 不要以"我"开头（中文简历惯例）
 - social_proof 只在数据特别突出时嵌入（如 GitHub 1k+ stars），否则留给 projects section
