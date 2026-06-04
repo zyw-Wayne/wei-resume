@@ -97,41 +97,37 @@ a { color: var(--accent-color); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
 /* ============================================================
-   LAYOUT — Two-Column (modern only) vs Single-Column
+   LAYOUT — All variants use single-column
+   Two-column flex breaks across pages (left column empties
+   but still occupies 30% on page 2+). Single-column avoids this.
    ============================================================ */
 
-/* Two-column container: modern uses flex, others collapse */
 .resume-container {
-  display: flex;
-  min-height: 297mm;
-}
-body.classic .resume-container,
-body.compact .resume-container {
   display: block;
-  min-height: auto;
 }
 
-/* Left column: visible only in modern */
+/* No left/right column split — all content flows in document order */
 .column-left {
-  width: var(--left-width);
-  background: var(--color-left-bg);
-  padding: var(--page-padding) 1.2cm;
-  flex-shrink: 0;
+  display: none;  /* sidebar content rendered inline at bottom */
 }
-body.classic .column-left,
-body.compact .column-left {
-  display: none;
-}
-
-/* Right column: full width in classic/compact */
 .column-right {
-  width: var(--right-width);
-  padding: var(--page-padding) 1.5cm var(--page-padding) 1.2cm;
-}
-body.classic .column-right,
-body.compact .column-right {
   width: 100%;
   padding: 0;
+}
+
+/* Sidebar sections rendered inline at bottom of resume */
+.sidebar-section {
+  margin-bottom: 0.8em;
+}
+body.modern .sidebar-section {
+  background: var(--color-left-bg);
+  padding: 0.6em 0.8em;
+  border-radius: 4px;
+  margin-bottom: 0.6em;
+}
+body.classic .sidebar-section,
+body.compact .sidebar-section {
+  /* no special styling, inline with other sections */
 }
 
 /* ============================================================

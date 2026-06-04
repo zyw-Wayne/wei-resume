@@ -13,193 +13,150 @@
 </head>
 <body class="{{VARIANT}}">
 
-<!-- ═══════════ LAYOUT CONTAINER ═══════════ -->
-<div class="resume-container">
-
-  <!-- LEFT COLUMN (modern only, classic/compact hidden via CSS) -->
-  <div class="column-left">
-
-    <!-- SKILLS: grouped badges (modern) / hidden (classic/compact) -->
-    <section class="resume-section">
-      <h2>技能</h2>
-      <div class="skill-group">
-        <div class="skill-group-title">{{SKILL_GROUP_1_TITLE}}</div>
-        <div class="skill-badges">
-          <span class="skill-badge">{{SKILL_1_1}}</span>
-          <span class="skill-badge">{{SKILL_1_2}}</span>
-          <span class="skill-badge">{{SKILL_1_3}}</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-title">{{SKILL_GROUP_2_TITLE}}</div>
-        <div class="skill-badges">
-          <span class="skill-badge">{{SKILL_2_1}}</span>
-          <span class="skill-badge">{{SKILL_2_2}}</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-title">{{SKILL_GROUP_3_TITLE}}</div>
-        <div class="skill-badges">
-          <span class="skill-badge">{{SKILL_3_1}}</span>
-          <span class="skill-badge">{{SKILL_3_2}}</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- AI CAPABILITY (modern: left column) -->
-    <section class="resume-section ai-capability">
-      <h2>AI 工程能力</h2>
-      <div class="ai-item">{{AI_ITEM_1}}</div>
-      <div class="ai-item">{{AI_ITEM_2}}</div>
-      <div class="ai-item">{{AI_ITEM_3}}</div>
-    </section>
-
-    <!-- EDUCATION (modern: left column) -->
-    <section class="resume-section">
-      <h2>教育背景</h2>
-      <div class="education-entry">
-        <span class="degree">{{DEGREE}}</span>
-        <span class="school">{{SCHOOL}} · {{EDU_DATE}}</span>
-        <div>{{EDU_NOTE}}</div>
-      </div>
-    </section>
-
-    <!-- EXTRAS (modern: left column) -->
-    <section class="resume-section extras-section">
-      <h2>其他</h2>
-      <div>{{EXTRAS_CONTENT}}</div>
-    </section>
-
+<!-- ═══════════ HEADER ═══════════ -->
+<header class="resume-header">
+  <div class="name">{{NAME}}</div>
+  <div class="title">{{ROLE_TITLE}}</div>
+  <div class="contact-info">
+    <span>{{PHONE}}</span>
+    <span>{{EMAIL}}</span>
+    <span>GitHub: {{GITHUB_ID}}</span>
+    <span>{{CITY}}</span>
   </div>
-  <!-- /column-left -->
+</header>
 
-  <!-- RIGHT COLUMN -->
-  <div class="column-right">
+<!-- ═══════════ MAIN CONTENT (single-column flow) ═══════════ -->
 
-    <!-- HEADER -->
-    <header class="resume-header">
-      <div class="name">{{NAME}}</div>
-      <div class="title">{{ROLE_TITLE}}</div>
-      <div class="contact-info">
-        <span>{{PHONE}}</span>
-        <span>{{EMAIL}}</span>
-        <span>GitHub: {{GITHUB_ID}}</span>
-        <span>{{CITY}}</span>
-      </div>
-    </header>
+<!-- SUMMARY -->
+<section class="resume-section">
+  <div class="summary">{{SUMMARY}}</div>
+</section>
 
-    <!-- SKILLS: inline list (classic) / comma-separated (compact) / hidden (modern) -->
-    <section class="resume-section">
-      <h2>技能</h2>
-      <ul class="skills-list">
-        <li><span class="skill-category">GIS/空间分析</span>CesiumJS / Turf.js / 高德地图API / 3DTiles</li>
-        <li><span class="skill-category">AI工程</span>Claude Code Skills / Agent Harness / Prompt Engineering</li>
-        <li><span class="skill-category">前端核心</span>Vue 2/3 / React / TypeScript / Angular 13 / React Native</li>
-        <li><span class="skill-category">3D/可视化</span>Babylon.js / Fabric.js / PixiJS / ECharts / GLSL</li>
-        <li><span class="skill-category">工程化</span>Electron / Webpack / Vite / Node.js / Qiankun</li>
-      </ul>
-    </section>
+<!-- EXPERIENCE -->
+<section class="resume-section">
+  <h2>工作经历</h2>
 
-    <!-- SUMMARY -->
-    <section class="resume-section">
-      <div class="summary">{{SUMMARY}}</div>
-    </section>
-
-    <!-- EXPERIENCE -->
-    <section class="resume-section">
-      <h2>工作经历</h2>
-
-      <!-- Experience entry 1 -->
-      <div class="entry">
-        <div class="entry-header">
-          <span class="entry-title">{{EXP_1_TITLE}}</span>
-          <span class="entry-org">{{EXP_1_ORG}}</span>
-          <span class="entry-date">{{EXP_1_DATE}}</span>
-        </div>
-        <ul class="entry-bullets">
-          <li>{{EXP_1_BULLET_1}}</li>
-          <li>{{EXP_1_BULLET_2}}</li>
-          <li>{{EXP_1_BULLET_3}}</li>
-        </ul>
-      </div>
-
-      <!-- Experience entry 2 -->
-      <div class="entry">
-        <div class="entry-header">
-          <span class="entry-title">{{EXP_2_TITLE}}</span>
-          <span class="entry-org">{{EXP_2_ORG}}</span>
-          <span class="entry-date">{{EXP_2_DATE}}</span>
-        </div>
-        <ul class="entry-bullets">
-          <li>{{EXP_2_BULLET_1}}</li>
-          <li>{{EXP_2_BULLET_2}}</li>
-          <li>{{EXP_2_BULLET_3}}</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section class="resume-section">
-      <h2>项目经历</h2>
-
-      <!-- Project entry template (Phase 3 repeats this block) -->
-      <div class="entry">
-        <div class="entry-header">
-          <span class="entry-title">{{PROJ_NAME}}</span>
-          <span class="entry-org">{{PROJ_STACK}}</span>
-          <span class="entry-date">{{PROJ_ROLE}}</span>
-        </div>
-        <div class="entry-summary">{{PROJ_SUMMARY}}</div>
-        <ul class="entry-bullets">
-          <li>{{PROJ_BULLET_1}}
-            <ul>
-              <li>{{PROJ_SUB_1_1}}</li>
-              <li>{{PROJ_SUB_1_2}}</li>
-            </ul>
-          </li>
-          <li>{{PROJ_BULLET_2}}
-            <ul>
-              <li>{{PROJ_SUB_2_1}}</li>
-            </ul>
-          </li>
-          <li>{{PROJ_BULLET_3}}</li>
-        </ul>
-      </div>
-      <!-- /Project entry template -->
-
-    </section>
-
-    <!-- SKILLS + EDUCATION + AI (classic/compact: inline in right column) -->
-    <!-- These sections are hidden in modern (already in left column) -->
-    <section class="resume-section">
-      <h2>AI 工程能力</h2>
-      <ul class="entry-bullets">
-        <li>{{AI_DETAIL_1}}</li>
-        <li>{{AI_DETAIL_2}}</li>
-        <li>{{AI_DETAIL_3}}</li>
-      </ul>
-    </section>
-
-    <section class="resume-section">
-      <h2>教育背景</h2>
-      <div class="education-entry">
-        <span class="degree">{{DEGREE}}</span> ·
-        <span class="school">{{SCHOOL}}</span> ·
-        <span>{{EDU_DATE}}</span>
-      </div>
-    </section>
-
-    <!-- EXTRAS (compact hides this) -->
-    <section class="resume-section extras-section">
-      <h2>其他</h2>
-      <div>{{EXTRAS_CONTENT}}</div>
-    </section>
-
+  <div class="entry">
+    <div class="entry-header">
+      <span class="entry-title">{{EXP_1_TITLE}}</span>
+      <span class="entry-org">{{EXP_1_ORG}}</span>
+      <span class="entry-date">{{EXP_1_DATE}}</span>
+    </div>
+    <ul class="entry-bullets">
+      <li>{{EXP_1_BULLET_1}}</li>
+      <li>{{EXP_1_BULLET_2}}</li>
+      <li>{{EXP_1_BULLET_3}}</li>
+    </ul>
   </div>
-  <!-- /column-right -->
 
-</div>
-<!-- /resume-container -->
+  <div class="entry">
+    <div class="entry-header">
+      <span class="entry-title">{{EXP_2_TITLE}}</span>
+      <span class="entry-org">{{EXP_2_ORG}}</span>
+      <span class="entry-date">{{EXP_2_DATE}}</span>
+    </div>
+    <ul class="entry-bullets">
+      <li>{{EXP_2_BULLET_1}}</li>
+      <li>{{EXP_2_BULLET_2}}</li>
+      <li>{{EXP_2_BULLET_3}}</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="resume-section">
+  <h2>项目经历</h2>
+
+  <!-- Project entry (Phase 3 repeats this block) -->
+  <div class="entry">
+    <div class="entry-header">
+      <span class="entry-title">{{PROJ_NAME}}</span>
+      <span class="entry-org">{{PROJ_STACK}}</span>
+      <span class="entry-date">{{PROJ_ROLE}}</span>
+    </div>
+    <div class="entry-summary">{{PROJ_SUMMARY}}</div>
+    <ul class="entry-bullets">
+      <li>{{PROJ_BULLET_1}}
+        <ul>
+          <li>{{PROJ_SUB_1_1}}</li>
+          <li>{{PROJ_SUB_1_2}}</li>
+        </ul>
+      </li>
+      <li>{{PROJ_BULLET_2}}
+        <ul>
+          <li>{{PROJ_SUB_2_1}}</li>
+        </ul>
+      </li>
+      <li>{{PROJ_BULLET_3}}</li>
+    </ul>
+  </div>
+  <!-- /Project entry -->
+
+</section>
+
+<!-- ═══════════ SIDEBAR SECTIONS (inline at bottom) ═══════════ -->
+
+<!-- SKILLS -->
+<section class="resume-section sidebar-section">
+  <h2>技能</h2>
+  <!-- modern: grouped badges / classic: inline list / compact: comma-separated -->
+  <div class="skill-group">
+    <div class="skill-group-title">{{SKILL_GROUP_1_TITLE}}</div>
+    <div class="skill-badges">
+      <span class="skill-badge">{{SKILL_1_1}}</span>
+      <span class="skill-badge">{{SKILL_1_2}}</span>
+      <span class="skill-badge">{{SKILL_1_3}}</span>
+    </div>
+  </div>
+  <div class="skill-group">
+    <div class="skill-group-title">{{SKILL_GROUP_2_TITLE}}</div>
+    <div class="skill-badges">
+      <span class="skill-badge">{{SKILL_2_1}}</span>
+      <span class="skill-badge">{{SKILL_2_2}}</span>
+    </div>
+  </div>
+  <div class="skill-group">
+    <div class="skill-group-title">{{SKILL_GROUP_3_TITLE}}</div>
+    <div class="skill-badges">
+      <span class="skill-badge">{{SKILL_3_1}}</span>
+      <span class="skill-badge">{{SKILL_3_2}}</span>
+    </div>
+  </div>
+  <!-- classic/compact fallback: inline list -->
+  <ul class="skills-list">
+    <li><span class="skill-category">GIS/空间分析</span>CesiumJS / Turf.js / 高德地图API / 3DTiles</li>
+    <li><span class="skill-category">AI工程</span>Claude Code Skills / Agent Harness / Prompt Engineering</li>
+    <li><span class="skill-category">前端核心</span>Vue 2/3 / React / TypeScript / Angular 13 / React Native</li>
+    <li><span class="skill-category">3D/可视化</span>Babylon.js / Fabric.js / PixiJS / ECharts / GLSL</li>
+    <li><span class="skill-category">工程化</span>Electron / Webpack / Vite / Node.js / Qiankun</li>
+  </ul>
+</section>
+
+<!-- AI CAPABILITY -->
+<section class="resume-section sidebar-section">
+  <h2>AI 工程能力</h2>
+  <ul class="entry-bullets">
+    <li>{{AI_DETAIL_1}}</li>
+    <li>{{AI_DETAIL_2}}</li>
+    <li>{{AI_DETAIL_3}}</li>
+  </ul>
+</section>
+
+<!-- EDUCATION -->
+<section class="resume-section sidebar-section">
+  <h2>教育背景</h2>
+  <div class="education-entry">
+    <span class="degree">{{DEGREE}}</span> ·
+    <span class="school">{{SCHOOL}}</span> ·
+    <span>{{EDU_DATE}}</span>
+  </div>
+</section>
+
+<!-- EXTRAS (compact hides this) -->
+<section class="resume-section sidebar-section extras-section">
+  <h2>其他</h2>
+  <div>{{EXTRAS_CONTENT}}</div>
+</section>
 
 </body>
 </html>

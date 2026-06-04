@@ -13,172 +13,124 @@
 </head>
 <body class="{{VARIANT}}">
 
-<!-- ═══════════ LAYOUT CONTAINER ═══════════ -->
-<div class="resume-container">
-
-  <!-- LEFT COLUMN (modern only, classic/compact hidden via CSS) -->
-  <div class="column-left">
-
-    <section class="resume-section">
-      <h2>Skills</h2>
-      <div class="skill-group">
-        <div class="skill-group-title">{{SKILL_GROUP_1_TITLE}}</div>
-        <div class="skill-badges">
-          <span class="skill-badge">{{SKILL_1_1}}</span>
-          <span class="skill-badge">{{SKILL_1_2}}</span>
-          <span class="skill-badge">{{SKILL_1_3}}</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-title">{{SKILL_GROUP_2_TITLE}}</div>
-        <div class="skill-badges">
-          <span class="skill-badge">{{SKILL_2_1}}</span>
-          <span class="skill-badge">{{SKILL_2_2}}</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-title">{{SKILL_GROUP_3_TITLE}}</div>
-        <div class="skill-badges">
-          <span class="skill-badge">{{SKILL_3_1}}</span>
-          <span class="skill-badge">{{SKILL_3_2}}</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="resume-section ai-capability">
-      <h2>AI Engineering</h2>
-      <div class="ai-item">{{AI_ITEM_1}}</div>
-      <div class="ai-item">{{AI_ITEM_2}}</div>
-      <div class="ai-item">{{AI_ITEM_3}}</div>
-    </section>
-
-    <section class="resume-section">
-      <h2>Education</h2>
-      <div class="education-entry">
-        <span class="degree">{{DEGREE}}</span>
-        <span class="school">{{SCHOOL}} · {{EDU_DATE}}</span>
-        <div>{{EDU_NOTE}}</div>
-      </div>
-    </section>
-
-    <section class="resume-section extras-section">
-      <h2>Extras</h2>
-      <div>{{EXTRAS_CONTENT}}</div>
-    </section>
-
+<header class="resume-header">
+  <div class="name">{{NAME}}</div>
+  <div class="title">{{ROLE_TITLE}}</div>
+  <div class="contact-info">
+    <span>{{EMAIL}}</span>
+    <span>GitHub: {{GITHUB_ID}}</span>
+    <span>{{CITY}}</span>
   </div>
+</header>
 
-  <!-- RIGHT COLUMN -->
-  <div class="column-right">
+<section class="resume-section">
+  <div class="summary">{{SUMMARY}}</div>
+</section>
 
-    <header class="resume-header">
-      <div class="name">{{NAME}}</div>
-      <div class="title">{{ROLE_TITLE}}</div>
-      <div class="contact-info">
-        <span>{{EMAIL}}</span>
-        <span>GitHub: {{GITHUB_ID}}</span>
-        <span>{{CITY}}</span>
-      </div>
-    </header>
-
-    <section class="resume-section">
-      <h2>Skills</h2>
-      <ul class="skills-list">
-        <li><span class="skill-category">GIS/Spatial</span>CesiumJS / Turf.js / AMap API / 3DTiles</li>
-        <li><span class="skill-category">AI Engineering</span>Claude Code Skills / Agent Harness / Prompt Engineering</li>
-        <li><span class="skill-category">Frontend</span>Vue 2/3 / React / TypeScript / Angular 13 / React Native</li>
-        <li><span class="skill-category">3D/Visualization</span>Babylon.js / Fabric.js / PixiJS / ECharts / GLSL</li>
-        <li><span class="skill-category">Tooling</span>Electron / Webpack / Vite / Node.js / Qiankun</li>
-      </ul>
-    </section>
-
-    <section class="resume-section">
-      <div class="summary">{{SUMMARY}}</div>
-    </section>
-
-    <section class="resume-section">
-      <h2>Experience</h2>
-
-      <div class="entry">
-        <div class="entry-header">
-          <span class="entry-title">{{EXP_1_TITLE}}</span>
-          <span class="entry-org">{{EXP_1_ORG}}</span>
-          <span class="entry-date">{{EXP_1_DATE}}</span>
-        </div>
-        <ul class="entry-bullets">
-          <li>{{EXP_1_BULLET_1}}</li>
-          <li>{{EXP_1_BULLET_2}}</li>
-          <li>{{EXP_1_BULLET_3}}</li>
-        </ul>
-      </div>
-
-      <div class="entry">
-        <div class="entry-header">
-          <span class="entry-title">{{EXP_2_TITLE}}</span>
-          <span class="entry-org">{{EXP_2_ORG}}</span>
-          <span class="entry-date">{{EXP_2_DATE}}</span>
-        </div>
-        <ul class="entry-bullets">
-          <li>{{EXP_2_BULLET_1}}</li>
-          <li>{{EXP_2_BULLET_2}}</li>
-          <li>{{EXP_2_BULLET_3}}</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="resume-section">
-      <h2>Projects</h2>
-
-      <div class="entry">
-        <div class="entry-header">
-          <span class="entry-title">{{PROJ_NAME}}</span>
-          <span class="entry-org">{{PROJ_STACK}}</span>
-          <span class="entry-date">{{PROJ_ROLE}}</span>
-        </div>
-        <div class="entry-summary">{{PROJ_SUMMARY}}</div>
-        <ul class="entry-bullets">
-          <li>{{PROJ_BULLET_1}}
-            <ul>
-              <li>{{PROJ_SUB_1_1}}</li>
-              <li>{{PROJ_SUB_1_2}}</li>
-            </ul>
-          </li>
-          <li>{{PROJ_BULLET_2}}
-            <ul>
-              <li>{{PROJ_SUB_2_1}}</li>
-            </ul>
-          </li>
-          <li>{{PROJ_BULLET_3}}</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="resume-section">
-      <h2>AI Engineering</h2>
-      <ul class="entry-bullets">
-        <li>{{AI_DETAIL_1}}</li>
-        <li>{{AI_DETAIL_2}}</li>
-        <li>{{AI_DETAIL_3}}</li>
-      </ul>
-    </section>
-
-    <section class="resume-section">
-      <h2>Education</h2>
-      <div class="education-entry">
-        <span class="degree">{{DEGREE}}</span> ·
-        <span class="school">{{SCHOOL}}</span> ·
-        <span>{{EDU_DATE}}</span>
-      </div>
-    </section>
-
-    <section class="resume-section extras-section">
-      <h2>Extras</h2>
-      <div>{{EXTRAS_CONTENT}}</div>
-    </section>
-
+<section class="resume-section">
+  <h2>Experience</h2>
+  <div class="entry">
+    <div class="entry-header">
+      <span class="entry-title">{{EXP_1_TITLE}}</span>
+      <span class="entry-org">{{EXP_1_ORG}}</span>
+      <span class="entry-date">{{EXP_1_DATE}}</span>
+    </div>
+    <ul class="entry-bullets">
+      <li>{{EXP_1_BULLET_1}}</li>
+      <li>{{EXP_1_BULLET_2}}</li>
+      <li>{{EXP_1_BULLET_3}}</li>
+    </ul>
   </div>
+  <div class="entry">
+    <div class="entry-header">
+      <span class="entry-title">{{EXP_2_TITLE}}</span>
+      <span class="entry-org">{{EXP_2_ORG}}</span>
+      <span class="entry-date">{{EXP_2_DATE}}</span>
+    </div>
+    <ul class="entry-bullets">
+      <li>{{EXP_2_BULLET_1}}</li>
+      <li>{{EXP_2_BULLET_2}}</li>
+      <li>{{EXP_2_BULLET_3}}</li>
+    </ul>
+  </div>
+</section>
 
-</div>
+<section class="resume-section">
+  <h2>Projects</h2>
+  <div class="entry">
+    <div class="entry-header">
+      <span class="entry-title">{{PROJ_NAME}}</span>
+      <span class="entry-org">{{PROJ_STACK}}</span>
+      <span class="entry-date">{{PROJ_ROLE}}</span>
+    </div>
+    <div class="entry-summary">{{PROJ_SUMMARY}}</div>
+    <ul class="entry-bullets">
+      <li>{{PROJ_BULLET_1}}
+        <ul><li>{{PROJ_SUB_1_1}}</li><li>{{PROJ_SUB_1_2}}</li></ul>
+      </li>
+      <li>{{PROJ_BULLET_2}}
+        <ul><li>{{PROJ_SUB_2_1}}</li></ul>
+      </li>
+      <li>{{PROJ_BULLET_3}}</li>
+    </ul>
+  </div>
+</section>
+
+<section class="resume-section sidebar-section">
+  <h2>Skills</h2>
+  <div class="skill-group">
+    <div class="skill-group-title">{{SKILL_GROUP_1_TITLE}}</div>
+    <div class="skill-badges">
+      <span class="skill-badge">{{SKILL_1_1}}</span>
+      <span class="skill-badge">{{SKILL_1_2}}</span>
+      <span class="skill-badge">{{SKILL_1_3}}</span>
+    </div>
+  </div>
+  <div class="skill-group">
+    <div class="skill-group-title">{{SKILL_GROUP_2_TITLE}}</div>
+    <div class="skill-badges">
+      <span class="skill-badge">{{SKILL_2_1}}</span>
+      <span class="skill-badge">{{SKILL_2_2}}</span>
+    </div>
+  </div>
+  <div class="skill-group">
+    <div class="skill-group-title">{{SKILL_GROUP_3_TITLE}}</div>
+    <div class="skill-badges">
+      <span class="skill-badge">{{SKILL_3_1}}</span>
+      <span class="skill-badge">{{SKILL_3_2}}</span>
+    </div>
+  </div>
+  <ul class="skills-list">
+    <li><span class="skill-category">GIS/Spatial</span>CesiumJS / Turf.js / AMap API / 3DTiles</li>
+    <li><span class="skill-category">AI Engineering</span>Claude Code Skills / Agent Harness / Prompt Engineering</li>
+    <li><span class="skill-category">Frontend</span>Vue 2/3 / React / TypeScript / Angular 13 / React Native</li>
+    <li><span class="skill-category">3D/Visualization</span>Babylon.js / Fabric.js / PixiJS / ECharts / GLSL</li>
+    <li><span class="skill-category">Tooling</span>Electron / Webpack / Vite / Node.js / Qiankun</li>
+  </ul>
+</section>
+
+<section class="resume-section sidebar-section">
+  <h2>AI Engineering</h2>
+  <ul class="entry-bullets">
+    <li>{{AI_DETAIL_1}}</li>
+    <li>{{AI_DETAIL_2}}</li>
+    <li>{{AI_DETAIL_3}}</li>
+  </ul>
+</section>
+
+<section class="resume-section sidebar-section">
+  <h2>Education</h2>
+  <div class="education-entry">
+    <span class="degree">{{DEGREE}}</span> ·
+    <span class="school">{{SCHOOL}}</span> ·
+    <span>{{EDU_DATE}}</span>
+  </div>
+</section>
+
+<section class="resume-section sidebar-section extras-section">
+  <h2>Extras</h2>
+  <div>{{EXTRAS_CONTENT}}</div>
+</section>
 
 </body>
 </html>
