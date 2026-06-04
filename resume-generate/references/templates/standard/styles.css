@@ -1,153 +1,264 @@
 /* ============================================================
    Standard Template — Unified CSS with 3 Variants
    body.modern | body.classic | body.compact
+   NOTE: WeasyPrint has limited CSS variable support.
+   Values are written directly per variant for reliability.
    ============================================================ */
 
-/* ---------- @page per variant (CSS variables not supported in @page) ---------- */
-body.modern  { page: modern; }
-body.classic { page: classic; }
-body.compact { page: compact; }
-@page modern  { size: A4; margin: 0; }
-@page classic { size: A4; margin: 2cm 2.5cm; }
-@page compact { size: A4; margin: 1.5cm; }
-
-/* ---------- Base Variables ---------- */
-:root {
-  --font-size-small: 9pt;
-  --color-bg: #fff;
-}
-
-/* ============================================================
-   VARIANT: modern — Two-Column, Tech Blue, Sans-Serif
-   ============================================================ */
-body.modern {
-  --accent-color: #2563eb;
-  --accent-light: #dbeafe;
-  --accent-dark: #1e40af;
-  --font-main: "Inter", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
-  --color-text: #1f2937;
-  --color-text-light: #4b5563;
-  --color-left-bg: #f3f4f6;
-  --line-height: 1.5;
-  --font-size-base: 10.5pt;
-  --font-size-name: 22pt;
-  --font-size-section: 12pt;
-  --page-padding: 2cm;
-  --left-width: 30%;
-  --right-width: 70%;
-}
-
-/* ============================================================
-   VARIANT: classic — Single-Column, Monochrome, Serif
-   ============================================================ */
-body.classic {
-  --accent-color: #000;
-  --accent-light: transparent;
-  --accent-dark: #000;
-  --font-main: "Noto Serif SC", "Georgia", "Times New Roman", serif;
-  --color-text: #000;
-  --color-text-light: #333;
-  --color-left-bg: transparent;
-  --line-height: 1.55;
-  --font-size-base: 11pt;
-  --font-size-name: 20pt;
-  --font-size-section: 13pt;
-  --page-padding: 0;
-  --left-width: 0;
-  --right-width: 100%;
-}
-
-/* ============================================================
-   VARIANT: compact — Single-Column, Minimal, Condensed
-   ============================================================ */
-body.compact {
-  --accent-color: #111;
-  --accent-light: transparent;
-  --accent-dark: #111;
-  --font-main: "Arial Narrow", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
-  --color-text: #111;
-  --color-text-light: #444;
-  --color-left-bg: transparent;
-  --line-height: 1.3;
-  --font-size-base: 9.5pt;
-  --font-size-name: 14pt;
-  --font-size-section: 10.5pt;
-  --font-size-small: 8.5pt;
-  --page-padding: 0;
-  --left-width: 0;
-  --right-width: 100%;
-}
-
-/* (page margins handled by @page rules above) */
-
-/* ---------- Reset & Base ---------- */
+/* ---------- Reset ---------- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-body {
-  font-family: var(--font-main);
-  font-size: var(--font-size-base);
-  line-height: var(--line-height);
-  color: var(--color-text);
-  background: var(--color-bg);
-  max-width: 210mm;
-  margin: 0 auto;
-}
-
-a { color: var(--accent-color); text-decoration: none; }
-a:hover { text-decoration: underline; }
-
 /* ============================================================
-   LAYOUT — All variants use single-column
-   Two-column flex breaks across pages (left column empties
-   but still occupies 30% on page 2+). Single-column avoids this.
+   VARIANT: modern — Sans-Serif, Tech Blue, Card Entries
    ============================================================ */
-
-.resume-container {
-  display: block;
+body.modern {
+  font-family: "Inter", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+  font-size: 10.5pt;
+  line-height: 1.5;
+  color: #1f2937;
+  background: #fff;
+  padding: 1.8cm 2cm;
+}
+body.modern .resume-header {
+  border-left: 4px solid #2563eb;
+  padding-left: 0.8em;
+  margin-bottom: 1.2em;
+}
+body.modern .resume-header .name {
+  font-size: 22pt;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #1f2937;
+}
+body.modern .resume-header .title {
+  font-size: 10.5pt;
+  color: #2563eb;
+  font-weight: 600;
+  margin-top: 0.15em;
+}
+body.modern .resume-header .contact-info {
+  font-size: 9pt;
+  color: #4b5563;
+  margin-top: 0.4em;
+}
+body.modern .resume-header .contact-info span + span::before {
+  content: " | ";
+  margin: 0 0.3em;
+}
+body.modern .resume-section {
+  margin-bottom: 1.2em;
+}
+body.modern .resume-section > h2 {
+  font-size: 12pt;
+  font-weight: 700;
+  color: #2563eb;
+  margin-bottom: 0.5em;
+  padding-bottom: 0.2em;
+  border-bottom: 2px solid #2563eb;
+}
+body.modern .entry {
+  margin-bottom: 0.9em;
+  padding: 0.5em 0.6em;
+  border-radius: 4px;
+  background: #fafbfc;
+  border: 1px solid #e5e7eb;
+}
+body.modern .entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+body.modern .entry-title {
+  font-weight: 700;
+  color: #1f2937;
+}
+body.modern .entry-org {
+  color: #4b5563;
+  font-size: 9.5pt;
+}
+body.modern .entry-date {
+  font-size: 9pt;
+  color: #4b5563;
+  white-space: nowrap;
+}
+body.modern .entry-summary {
+  color: #4b5563;
+  font-size: 9.5pt;
+  line-height: 1.5;
+  margin-bottom: 0.3em;
+}
+body.modern .entry-bullets {
+  list-style: none;
+  padding-left: 0;
+}
+body.modern .entry-bullets li {
+  margin-bottom: 0.15em;
+  padding-left: 1.2em;
+  position: relative;
+}
+body.modern .entry-bullets li::before {
+  content: "▸";
+  color: #2563eb;
+  position: absolute;
+  left: 0;
+  font-size: 0.85em;
+}
+body.modern .entry-bullets ul {
+  list-style: none;
+  padding-left: 1.2em;
+  margin: 0.1em 0;
+}
+body.modern .entry-bullets ul li {
+  font-size: 9pt;
+  color: #4b5563;
+  margin-bottom: 0.08em;
+  padding-left: 1em;
+  position: relative;
+}
+body.modern .entry-bullets ul li::before {
+  content: "–";
+  color: #2563eb;
+  opacity: 0.6;
+  position: absolute;
+  left: 0;
+  font-size: 0.85em;
+}
+body.modern .summary {
+  margin-bottom: 1em;
+  color: #4b5563;
+  line-height: 1.6;
 }
 
-/* No left/right column split — all content flows in document order */
-.column-left {
-  display: none;  /* sidebar content rendered inline at bottom */
-}
-.column-right {
-  width: 100%;
-  padding: 0;
-}
-
-/* Sidebar sections rendered inline at bottom of resume */
-.sidebar-section {
-  margin-bottom: 0.8em;
-}
+/* modern: sidebar sections (skills, AI, education) */
 body.modern .sidebar-section {
-  background: var(--color-left-bg);
+  background: #f3f4f6;
   padding: 0.6em 0.8em;
   border-radius: 4px;
   margin-bottom: 0.6em;
 }
-body.classic .sidebar-section,
-body.compact .sidebar-section {
-  /* no special styling, inline with other sections */
+body.modern .skill-group {
+  margin-bottom: 0.7em;
 }
+body.modern .skill-group-title {
+  font-weight: 600;
+  font-size: 9pt;
+  color: #1f2937;
+  margin-bottom: 0.25em;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+body.modern .skill-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3em;
+}
+body.modern .skill-badge {
+  display: inline-block;
+  padding: 0.15em 0.55em;
+  background: #dbeafe;
+  color: #1e40af;
+  border-radius: 3px;
+  font-size: 9pt;
+  font-weight: 500;
+}
+body.modern .skills-list { display: none; }
+body.modern .education-entry {
+  margin-bottom: 0.6em;
+  font-size: 9.5pt;
+}
+body.modern .education-entry .degree { font-weight: 600; }
+body.modern .education-entry .school { color: #4b5563; }
+body.modern a { color: #2563eb; text-decoration: none; }
 
 /* ============================================================
-   HEADER
+   VARIANT: classic — Serif, Monochrome, Clean
    ============================================================ */
-
-/* modern: left-aligned with color bar (in right column) */
-body.modern .resume-header {
-  border-left: 4px solid var(--accent-color);
-  padding-left: 0.8em;
-  margin-bottom: 1.2em;
+body.classic {
+  font-family: "Noto Serif SC", "Georgia", "Times New Roman", serif;
+  font-size: 11pt;
+  line-height: 1.55;
+  color: #000;
+  background: #fff;
+  padding: 2cm 2.5cm;
 }
-
-/* classic: centered */
 body.classic .resume-header {
   text-align: center;
   margin-bottom: 1em;
 }
+body.classic .resume-header .name {
+  font-size: 20pt;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25em;
+}
+body.classic .resume-header .title {
+  font-size: 11pt;
+  color: #000;
+  font-weight: 600;
+}
+body.classic .resume-header .contact-info {
+  font-size: 9.5pt;
+  color: #333;
+  margin-top: 0.3em;
+}
+body.classic .resume-header .contact-info span + span::before {
+  content: " | ";
+  margin: 0 0.3em;
+}
+body.classic .resume-section {
+  margin-bottom: 1em;
+}
+body.classic .resume-section + .resume-section {
+  border-top: 1px solid #000;
+  padding-top: 0.8em;
+}
+body.classic .resume-section > h2 {
+  font-size: 13pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.4em;
+}
+body.classic .entry {
+  margin-bottom: 0.8em;
+}
+body.classic .entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+body.classic .entry-title { font-weight: 700; font-size: 11pt; }
+body.classic .entry-org { font-style: italic; color: #333; }
+body.classic .entry-date { font-size: 9.5pt; white-space: nowrap; }
+body.classic .entry-summary { font-size: 11pt; line-height: 1.5; margin-bottom: 0.25em; }
+body.classic .entry-bullets { list-style: disc; padding-left: 1.5em; margin-top: 0.2em; }
+body.classic .entry-bullets li { margin-bottom: 0.15em; }
+body.classic .entry-bullets ul { list-style: disc; padding-left: 1.5em; margin: 0.1em 0; }
+body.classic .entry-bullets ul li { font-size: 10pt; list-style-type: circle; margin-bottom: 0.1em; }
+body.classic .summary { margin-bottom: 0.8em; font-style: italic; color: #333; }
+body.classic .sidebar-section { /* no special styling */ }
+body.classic .skill-group { display: none; }
+body.classic .skills-list { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.2em 0.6em; }
+body.classic .skills-list li { display: inline; }
+body.classic .skills-list li + li::before { content: "·"; margin-right: 0.4em; }
+body.classic .skill-category { font-weight: 600; }
+body.classic .skill-category::after { content: ": "; }
+body.classic .education-entry { margin-bottom: 0.6em; }
+body.classic a { color: #000; text-decoration: underline; }
 
-/* compact: single line, space-between */
+/* ============================================================
+   VARIANT: compact — Condensed, Minimal
+   ============================================================ */
+body.compact {
+  font-family: "Arial Narrow", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+  font-size: 9.5pt;
+  line-height: 1.3;
+  color: #111;
+  background: #fff;
+  padding: 1.5cm;
+}
 body.compact .resume-header {
   display: flex;
   align-items: baseline;
@@ -156,400 +267,44 @@ body.compact .resume-header {
   margin-bottom: 0.5em;
   gap: 0.3em;
 }
-
-.resume-header .name {
-  font-size: var(--font-size-name);
-  font-weight: 700;
-  line-height: 1.2;
-}
-body.classic .resume-header .name {
-  letter-spacing: 0.05em;
-  margin-bottom: 0.25em;
-}
-body.compact .resume-header .name {
-  white-space: nowrap;
-}
-
-.resume-header .title {
-  font-size: var(--font-size-base);
-  color: var(--accent-color);
-  font-weight: 600;
-  margin-top: 0.15em;
-}
-body.classic .resume-header .title,
-body.compact .resume-header .title {
-  margin-top: 0;
-}
-
-.resume-header .contact-info {
-  font-size: var(--font-size-small);
-  color: var(--color-text-light);
-  margin-top: 0.4em;
-}
-body.compact .resume-header .contact-info {
-  text-align: right;
-  margin-top: 0;
-}
-
-.resume-header .contact-info span + span::before {
-  content: " | ";
-  margin: 0 0.3em;
-}
-body.compact .resume-header .contact-info span + span::before {
-  margin: 0 0.2em;
-}
+body.compact .resume-header .name { font-size: 14pt; font-weight: 700; white-space: nowrap; }
+body.compact .resume-header .title { font-size: 9.5pt; color: #111; font-weight: 600; }
+body.compact .resume-header .contact-info { font-size: 8.5pt; color: #444; text-align: right; }
+body.compact .resume-header .contact-info span + span::before { content: " | "; margin: 0 0.2em; }
+body.compact .resume-section { margin-bottom: 0.45em; }
+body.compact .resume-section > h2 { font-size: 10.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.2em; }
+body.compact .entry { margin-bottom: 0.35em; }
+body.compact .entry-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; }
+body.compact .entry-title { font-weight: 700; font-size: 9.5pt; }
+body.compact .entry-org { color: #444; font-size: 8.5pt; }
+body.compact .entry-date { font-size: 8.5pt; color: #444; white-space: nowrap; }
+body.compact .entry-summary { font-size: 9.5pt; line-height: 1.3; margin-bottom: 0.1em; }
+body.compact .entry-bullets { list-style: disc; padding-left: 1.3em; margin-top: 0.1em; }
+body.compact .entry-bullets li { margin-bottom: 0.05em; }
+body.compact .entry-bullets ul { list-style: disc; padding-left: 1.2em; margin: 0.05em 0; }
+body.compact .entry-bullets ul li { font-size: 8.5pt; list-style-type: circle; margin-bottom: 0.03em; }
+body.compact .summary { margin-bottom: 0.5em; color: #444; }
+body.compact .sidebar-section { /* no special styling */ }
+body.compact .skill-group { display: none; }
+body.compact .skills-list { list-style: none; padding: 0; display: block; font-size: 9.5pt; }
+body.compact .skills-list li { display: inline; }
+body.compact .skills-list li + li::before { content: ", "; }
+body.compact .skill-category { font-weight: 600; }
+body.compact .skill-category::after { content: ": "; }
+body.compact .education-entry { margin-bottom: 0.25em; }
+body.compact .education-entry .degree, body.compact .education-entry .school { display: inline; }
+body.compact .extras-section { display: none; }
+body.compact a { color: #111; text-decoration: none; }
 
 /* ============================================================
-   SECTION TITLES
-   ============================================================ */
-.resume-section {
-  margin-bottom: 1.2em;
-}
-body.compact .resume-section {
-  margin-bottom: 0.45em;
-}
-
-.resume-section > h2 {
-  font-size: var(--font-size-section);
-  font-weight: 700;
-  margin-bottom: 0.5em;
-}
-body.modern .resume-section > h2 {
-  color: var(--accent-color);
-  padding-bottom: 0.2em;
-  border-bottom: 2px solid var(--accent-color);
-}
-body.classic .resume-section > h2 {
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 0.4em;
-}
-body.compact .resume-section > h2 {
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.2em;
-}
-
-/* classic: horizontal rule dividers between sections */
-body.classic .resume-section + .resume-section {
-  border-top: 1px solid var(--color-text);
-  padding-top: 0.8em;
-}
-
-/* compact: no dividers, bold titles only */
-
-/* Left column section titles (modern only) */
-.column-left .resume-section > h2 {
-  font-size: 11pt;
-  border-bottom-width: 1.5px;
-}
-
-/* ============================================================
-   ENTRY (Experience / Project)
-   ============================================================ */
-.entry {
-  margin-bottom: 0.9em;
-}
-body.modern .entry {
-  padding: 0.5em 0.6em;
-  border-radius: 4px;
-  background: #fafbfc;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
-}
-body.classic .entry {
-  margin-bottom: 0.8em;
-}
-body.compact .entry {
-  margin-bottom: 0.35em;
-}
-
-.entry-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  flex-wrap: wrap;
-}
-
-.entry-title {
-  font-weight: 700;
-}
-body.classic .entry-title {
-  font-size: var(--font-size-base);
-}
-
-.entry-org {
-  color: var(--color-text-light);
-}
-body.classic .entry-org {
-  font-style: italic;
-}
-body.compact .entry-org {
-  font-size: var(--font-size-small);
-}
-
-.entry-date {
-  font-size: var(--font-size-small);
-  color: var(--color-text-light);
-  white-space: nowrap;
-}
-
-/* ============================================================
-   BULLETS — Hierarchical
-   ============================================================ */
-
-/* modern: custom bullets with accent color */
-body.modern .entry-bullets {
-  list-style: none;
-  padding-left: 0;
-}
-body.modern .entry-bullets li::before {
-  content: "▸";
-  color: var(--accent-color);
-  margin-right: 0.4em;
-  font-size: 0.85em;
-}
-
-/* classic/compact: standard disc bullets */
-body.classic .entry-bullets,
-body.compact .entry-bullets {
-  list-style: disc;
-}
-body.classic .entry-bullets {
-  padding-left: 1.5em;
-}
-body.compact .entry-bullets {
-  padding-left: 1.3em;
-}
-
-.entry-bullets li {
-  margin-bottom: 0.15em;
-}
-body.compact .entry-bullets li {
-  margin-bottom: 0.05em;
-}
-
-/* Sub-bullets */
-.entry-bullets ul {
-  list-style: none;
-  padding-left: 1.2em;
-  margin: 0.1em 0;
-}
-body.classic .entry-bullets ul {
-  list-style: disc;
-  padding-left: 1.5em;
-}
-body.compact .entry-bullets ul {
-  list-style: disc;
-  padding-left: 1.2em;
-  margin: 0.05em 0;
-}
-
-body.modern .entry-bullets ul li::before {
-  content: "–";
-  color: var(--accent-color);
-  margin-right: 0.35em;
-  font-size: 0.85em;
-  opacity: 0.7;
-}
-body.classic .entry-bullets ul li {
-  list-style-type: circle;
-}
-body.compact .entry-bullets ul li {
-  list-style-type: circle;
-}
-
-.entry-bullets ul li {
-  font-size: 9pt;
-  margin-bottom: 0.08em;
-  color: var(--color-text-light);
-}
-body.classic .entry-bullets ul li {
-  font-size: 10pt;
-  margin-bottom: 0.1em;
-}
-body.compact .entry-bullets ul li {
-  font-size: var(--font-size-small);
-  margin-bottom: 0.03em;
-}
-
-/* ============================================================
-   BACKGROUND PARAGRAPH
-   ============================================================ */
-.entry-summary {
-  color: var(--color-text-light);
-  line-height: 1.5;
-  margin-bottom: 0.3em;
-}
-body.modern .entry-summary {
-  font-size: 9.5pt;
-}
-body.classic .entry-summary {
-  font-size: var(--font-size-base);
-}
-body.compact .entry-summary {
-  font-size: var(--font-size-base);
-  line-height: 1.3;
-  margin-bottom: 0.1em;
-}
-
-/* ============================================================
-   SKILLS — Three display modes
-   ============================================================ */
-
-/* --- modern: grouped badges (in left column) --- */
-.skill-group {
-  margin-bottom: 0.7em;
-}
-body.classic .skill-group,
-body.compact .skill-group {
-  display: none;
-}
-
-.skill-group-title {
-  font-weight: 600;
-  font-size: var(--font-size-small);
-  color: var(--color-text);
-  margin-bottom: 0.25em;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-
-.skill-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.3em;
-}
-
-.skill-badge {
-  display: inline-block;
-  padding: 0.15em 0.55em;
-  background: var(--accent-light);
-  color: var(--accent-dark);
-  border-radius: 3px;
-  font-size: var(--font-size-small);
-  font-weight: 500;
-  line-height: 1.5;
-}
-
-/* --- classic: inline list (dot-separated) --- */
-.skills-list {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.2em 0.6em;
-}
-body.modern .skills-list {
-  display: none;
-}
-
-.skills-list li {
-  display: inline;
-}
-body.classic .skills-list li + li::before {
-  content: "·";
-  margin-right: 0.4em;
-}
-
-/* --- compact: comma-separated --- */
-body.compact .skills-list {
-  display: block;
-  font-size: var(--font-size-base);
-}
-body.compact .skills-list li + li::before {
-  content: ", ";
-}
-
-.skill-category {
-  font-weight: 600;
-}
-.skill-category::after {
-  content: ": ";
-}
-
-/* ============================================================
-   EDUCATION
-   ============================================================ */
-.education-entry {
-  margin-bottom: 0.6em;
-}
-body.compact .education-entry {
-  margin-bottom: 0.25em;
-}
-
-.education-entry .degree {
-  font-weight: 600;
-}
-
-.education-entry .school {
-  color: var(--color-text-light);
-  font-size: var(--font-size-small);
-}
-body.compact .education-entry .degree,
-body.compact .education-entry .school {
-  display: inline;
-}
-
-/* ============================================================
-   AI CAPABILITY (left column in modern, inline in others)
-   ============================================================ */
-.ai-capability .ai-item {
-  margin-bottom: 0.4em;
-  font-size: var(--font-size-small);
-}
-
-/* ============================================================
-   SUMMARY
-   ============================================================ */
-.summary {
-  margin-bottom: 1em;
-  color: var(--color-text-light);
-  line-height: 1.6;
-}
-body.classic .summary {
-  font-style: italic;
-}
-body.compact .summary {
-  margin-bottom: 0.5em;
-}
-
-/* ============================================================
-   EXTRAS (hidden in compact)
-   ============================================================ */
-body.compact .extras-section {
-  display: none;
-}
-
-/* ============================================================
-   PRINT STYLES
+   PRINT — shared rules
    ============================================================ */
 @media print {
-  body {
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-  body.modern .column-left {
-    background: var(--color-left-bg) !important;
-  }
-  .entry {
-    page-break-inside: avoid;
-  }
-  .resume-section > h2 {
-    page-break-after: avoid;
-  }
-  body.modern .entry {
-    box-shadow: none;
-  }
-  body.modern .skill-badge {
-    background: var(--accent-light) !important;
-  }
-  body.classic a {
-    text-decoration: none;
-  }
-  body.classic .resume-section + .resume-section {
-    border-top-color: #000;
-  }
-  body.compact a {
-    text-decoration: none;
-  }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .entry { page-break-inside: avoid; }
+  .resume-section > h2 { page-break-after: avoid; }
+  body.modern .entry { box-shadow: none; border: 1px solid #e5e7eb; }
+  body.modern .skill-badge { background: #dbeafe !important; }
+  body.classic a { text-decoration: none; }
+  body.compact a { text-decoration: none; }
 }
