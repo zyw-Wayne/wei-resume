@@ -75,8 +75,9 @@ See: [references/phase1-planning.md](references/phase1-planning.md)
 For each combination in the template×style matrix, dispatch a subagent (max 6 parallel):
 
 ```
-templates: modern | classic | compact | academic   (or subset via --template)
-styles:    tech   | hr      | full                 (or subset via --style)
+templates: standard (modern|classic|compact) | academic | kami   (or subset via --template)
+styles:    tech    | hr                     | full               (or subset via --style)
+variants:  modern  | classic                | compact            (standard template only, via --variant)
 ```
 
 Each subagent independently processes all sections defined in resume-plan.json:
@@ -163,7 +164,7 @@ All templates share common v2 defaults:
 
 **kami overrides**: `page_limit: 2` (fixed), `experience_format: three-step-timeline`, `project_format: three-part-table`, `skills_display: label-description-rows`. See `templates/kami/manifest.md`.
 
-Available templates: `modern`, `classic`, `compact`, `academic`, `kami`. When `--template all` is specified, Phase 2 dispatches across all five templates.
+Available templates: `standard`（含 modern/classic/compact 三个 variant）、`academic`、`kami`。When `--template all` is specified, Phase 2 dispatches across standard×3variants + academic + kami = 5 outputs.
 
 ### Kami Template (Premium Visual Output)
 
@@ -186,7 +187,8 @@ The `kami` template uses Kami's professional typesetting system — warm parchme
 ```
 wei-resume generate [options]
   --target <name|all>   Target position/JD to tailor for (default: all; _general when no target)
-  --template <name|all> modern | classic | compact | academic | kami | all (default: all)
+  --template <name|all> standard | academic | kami | all (default: all)
+  --variant <name|all>  modern | classic | compact | all (default: all; only for standard template)
   --style <name|all>    tech | hr | full | all (default: all)
   --pages <n>           Target page count (default: 3, overrides template page_limit; kami always uses 2)
   --project <names>     Comma-separated project filter (overrides smart selection)
@@ -210,32 +212,29 @@ wei-resume generate [options]
 
 ```
 ~/resumes/output/
-  _general/                    # no target specified
-    modern/
-      tech.md
-      tech.html
-      hr.md
-      hr.html
-      full.md
-      full.html
-    classic/
+  _general/
+    standard/                  # 3 variants × 3 styles = 9 outputs
+      modern/
+        tech.md, tech.html
+        hr.md, hr.html
+        full.md, full.html
+      classic/
+        ...
+      compact/
+        ...
+    academic/                  # academic × 3 styles
+      tech.md, tech.html
       ...
-    compact/
-      ...
-    academic/
-      ...
-    kami/                      # kami template (no style variants)
-      resume.md
-      resume.html
-      resume.pdf               # WeasyPrint-generated PDF
-  <target-name>/               # when --target is specified
-    modern/
-      tech.md
-      ...
-    kami/
+    kami/                      # kami (no style variants, WeasyPrint PDF)
       resume.md
       resume.html
       resume.pdf
+  <target-name>/
+    standard/
+      modern/
+        ...
+    kami/
+      ...
 ```
 
 ## Interactive Mode Flow (-i)

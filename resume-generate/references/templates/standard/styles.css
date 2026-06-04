@@ -1,0 +1,557 @@
+/* ============================================================
+   Standard Template — Unified CSS with 3 Variants
+   body.modern | body.classic | body.compact
+   ============================================================ */
+
+/* ---------- @page (per-variant via @media print override) ---------- */
+@page { size: A4; margin: 2cm; }
+
+/* ---------- Base Variables ---------- */
+:root {
+  --font-size-small: 9pt;
+  --color-bg: #fff;
+}
+
+/* ============================================================
+   VARIANT: modern — Two-Column, Tech Blue, Sans-Serif
+   ============================================================ */
+body.modern {
+  --accent-color: #2563eb;
+  --accent-light: #dbeafe;
+  --accent-dark: #1e40af;
+  --font-main: "Inter", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+  --color-text: #1f2937;
+  --color-text-light: #4b5563;
+  --color-left-bg: #f3f4f6;
+  --line-height: 1.5;
+  --font-size-base: 10.5pt;
+  --font-size-name: 22pt;
+  --font-size-section: 12pt;
+  --page-padding: 2cm;
+  --left-width: 30%;
+  --right-width: 70%;
+}
+
+/* ============================================================
+   VARIANT: classic — Single-Column, Monochrome, Serif
+   ============================================================ */
+body.classic {
+  --accent-color: #000;
+  --accent-light: transparent;
+  --accent-dark: #000;
+  --font-main: "Noto Serif SC", "Georgia", "Times New Roman", serif;
+  --color-text: #000;
+  --color-text-light: #333;
+  --color-left-bg: transparent;
+  --line-height: 1.55;
+  --font-size-base: 11pt;
+  --font-size-name: 20pt;
+  --font-size-section: 13pt;
+  --page-padding: 0;
+  --left-width: 0;
+  --right-width: 100%;
+}
+
+/* ============================================================
+   VARIANT: compact — Single-Column, Minimal, Condensed
+   ============================================================ */
+body.compact {
+  --accent-color: #111;
+  --accent-light: transparent;
+  --accent-dark: #111;
+  --font-main: "Arial Narrow", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+  --color-text: #111;
+  --color-text-light: #444;
+  --color-left-bg: transparent;
+  --line-height: 1.3;
+  --font-size-base: 9.5pt;
+  --font-size-name: 14pt;
+  --font-size-section: 10.5pt;
+  --font-size-small: 8.5pt;
+  --page-padding: 0;
+  --left-width: 0;
+  --right-width: 100%;
+}
+
+/* ---------- @page overrides ---------- */
+body.modern  { --page-margin: 0; }
+body.classic { --page-margin: 2cm 2.5cm; }
+body.compact { --page-margin: 1.5cm; }
+
+/* ---------- Reset & Base ---------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font-main);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height);
+  color: var(--color-text);
+  background: var(--color-bg);
+  max-width: 210mm;
+  margin: 0 auto;
+}
+
+a { color: var(--accent-color); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ============================================================
+   LAYOUT — Two-Column (modern only) vs Single-Column
+   ============================================================ */
+
+/* Two-column container: modern uses flex, others collapse */
+.resume-container {
+  display: flex;
+  min-height: 297mm;
+}
+body.classic .resume-container,
+body.compact .resume-container {
+  display: block;
+  min-height: auto;
+}
+
+/* Left column: visible only in modern */
+.column-left {
+  width: var(--left-width);
+  background: var(--color-left-bg);
+  padding: var(--page-padding) 1.2cm;
+  flex-shrink: 0;
+}
+body.classic .column-left,
+body.compact .column-left {
+  display: none;
+}
+
+/* Right column: full width in classic/compact */
+.column-right {
+  width: var(--right-width);
+  padding: var(--page-padding) 1.5cm var(--page-padding) 1.2cm;
+}
+body.classic .column-right,
+body.compact .column-right {
+  width: 100%;
+  padding: 0;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+/* modern: left-aligned with color bar (in right column) */
+body.modern .resume-header {
+  border-left: 4px solid var(--accent-color);
+  padding-left: 0.8em;
+  margin-bottom: 1.2em;
+}
+
+/* classic: centered */
+body.classic .resume-header {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+/* compact: single line, space-between */
+body.compact .resume-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 0.5em;
+  gap: 0.3em;
+}
+
+.resume-header .name {
+  font-size: var(--font-size-name);
+  font-weight: 700;
+  line-height: 1.2;
+}
+body.classic .resume-header .name {
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25em;
+}
+body.compact .resume-header .name {
+  white-space: nowrap;
+}
+
+.resume-header .title {
+  font-size: var(--font-size-base);
+  color: var(--accent-color);
+  font-weight: 600;
+  margin-top: 0.15em;
+}
+body.classic .resume-header .title,
+body.compact .resume-header .title {
+  margin-top: 0;
+}
+
+.resume-header .contact-info {
+  font-size: var(--font-size-small);
+  color: var(--color-text-light);
+  margin-top: 0.4em;
+}
+body.compact .resume-header .contact-info {
+  text-align: right;
+  margin-top: 0;
+}
+
+.resume-header .contact-info span + span::before {
+  content: " | ";
+  margin: 0 0.3em;
+}
+body.compact .resume-header .contact-info span + span::before {
+  margin: 0 0.2em;
+}
+
+/* ============================================================
+   SECTION TITLES
+   ============================================================ */
+.resume-section {
+  margin-bottom: 1.2em;
+}
+body.compact .resume-section {
+  margin-bottom: 0.45em;
+}
+
+.resume-section > h2 {
+  font-size: var(--font-size-section);
+  font-weight: 700;
+  margin-bottom: 0.5em;
+}
+body.modern .resume-section > h2 {
+  color: var(--accent-color);
+  padding-bottom: 0.2em;
+  border-bottom: 2px solid var(--accent-color);
+}
+body.classic .resume-section > h2 {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.4em;
+}
+body.compact .resume-section > h2 {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.2em;
+}
+
+/* classic: horizontal rule dividers between sections */
+body.classic .resume-section + .resume-section {
+  border-top: 1px solid var(--color-text);
+  padding-top: 0.8em;
+}
+
+/* compact: no dividers, bold titles only */
+
+/* Left column section titles (modern only) */
+.column-left .resume-section > h2 {
+  font-size: 11pt;
+  border-bottom-width: 1.5px;
+}
+
+/* ============================================================
+   ENTRY (Experience / Project)
+   ============================================================ */
+.entry {
+  margin-bottom: 0.9em;
+}
+body.modern .entry {
+  padding: 0.5em 0.6em;
+  border-radius: 4px;
+  background: #fafbfc;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+body.classic .entry {
+  margin-bottom: 0.8em;
+}
+body.compact .entry {
+  margin-bottom: 0.35em;
+}
+
+.entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.entry-title {
+  font-weight: 700;
+}
+body.classic .entry-title {
+  font-size: var(--font-size-base);
+}
+
+.entry-org {
+  color: var(--color-text-light);
+}
+body.classic .entry-org {
+  font-style: italic;
+}
+body.compact .entry-org {
+  font-size: var(--font-size-small);
+}
+
+.entry-date {
+  font-size: var(--font-size-small);
+  color: var(--color-text-light);
+  white-space: nowrap;
+}
+
+/* ============================================================
+   BULLETS — Hierarchical
+   ============================================================ */
+
+/* modern: custom bullets with accent color */
+body.modern .entry-bullets {
+  list-style: none;
+  padding-left: 0;
+}
+body.modern .entry-bullets li::before {
+  content: "▸";
+  color: var(--accent-color);
+  margin-right: 0.4em;
+  font-size: 0.85em;
+}
+
+/* classic/compact: standard disc bullets */
+body.classic .entry-bullets,
+body.compact .entry-bullets {
+  list-style: disc;
+}
+body.classic .entry-bullets {
+  padding-left: 1.5em;
+}
+body.compact .entry-bullets {
+  padding-left: 1.3em;
+}
+
+.entry-bullets li {
+  margin-bottom: 0.15em;
+}
+body.compact .entry-bullets li {
+  margin-bottom: 0.05em;
+}
+
+/* Sub-bullets */
+.entry-bullets ul {
+  list-style: none;
+  padding-left: 1.2em;
+  margin: 0.1em 0;
+}
+body.classic .entry-bullets ul {
+  list-style: disc;
+  padding-left: 1.5em;
+}
+body.compact .entry-bullets ul {
+  list-style: disc;
+  padding-left: 1.2em;
+  margin: 0.05em 0;
+}
+
+body.modern .entry-bullets ul li::before {
+  content: "–";
+  color: var(--accent-color);
+  margin-right: 0.35em;
+  font-size: 0.85em;
+  opacity: 0.7;
+}
+body.classic .entry-bullets ul li {
+  list-style-type: circle;
+}
+body.compact .entry-bullets ul li {
+  list-style-type: circle;
+}
+
+.entry-bullets ul li {
+  font-size: 9pt;
+  margin-bottom: 0.08em;
+  color: var(--color-text-light);
+}
+body.classic .entry-bullets ul li {
+  font-size: 10pt;
+  margin-bottom: 0.1em;
+}
+body.compact .entry-bullets ul li {
+  font-size: var(--font-size-small);
+  margin-bottom: 0.03em;
+}
+
+/* ============================================================
+   BACKGROUND PARAGRAPH
+   ============================================================ */
+.entry-summary {
+  color: var(--color-text-light);
+  line-height: 1.5;
+  margin-bottom: 0.3em;
+}
+body.modern .entry-summary {
+  font-size: 9.5pt;
+}
+body.classic .entry-summary {
+  font-size: var(--font-size-base);
+}
+body.compact .entry-summary {
+  font-size: var(--font-size-base);
+  line-height: 1.3;
+  margin-bottom: 0.1em;
+}
+
+/* ============================================================
+   SKILLS — Three display modes
+   ============================================================ */
+
+/* --- modern: grouped badges (in left column) --- */
+.skill-group {
+  margin-bottom: 0.7em;
+}
+body.classic .skill-group,
+body.compact .skill-group {
+  display: none;
+}
+
+.skill-group-title {
+  font-weight: 600;
+  font-size: var(--font-size-small);
+  color: var(--color-text);
+  margin-bottom: 0.25em;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.skill-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3em;
+}
+
+.skill-badge {
+  display: inline-block;
+  padding: 0.15em 0.55em;
+  background: var(--accent-light);
+  color: var(--accent-dark);
+  border-radius: 3px;
+  font-size: var(--font-size-small);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* --- classic: inline list (dot-separated) --- */
+.skills-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2em 0.6em;
+}
+body.modern .skills-list {
+  display: none;
+}
+
+.skills-list li {
+  display: inline;
+}
+body.classic .skills-list li + li::before {
+  content: "·";
+  margin-right: 0.4em;
+}
+
+/* --- compact: comma-separated --- */
+body.compact .skills-list {
+  display: block;
+  font-size: var(--font-size-base);
+}
+body.compact .skills-list li + li::before {
+  content: ", ";
+}
+
+.skill-category {
+  font-weight: 600;
+}
+.skill-category::after {
+  content: ": ";
+}
+
+/* ============================================================
+   EDUCATION
+   ============================================================ */
+.education-entry {
+  margin-bottom: 0.6em;
+}
+body.compact .education-entry {
+  margin-bottom: 0.25em;
+}
+
+.education-entry .degree {
+  font-weight: 600;
+}
+
+.education-entry .school {
+  color: var(--color-text-light);
+  font-size: var(--font-size-small);
+}
+body.compact .education-entry .degree,
+body.compact .education-entry .school {
+  display: inline;
+}
+
+/* ============================================================
+   AI CAPABILITY (left column in modern, inline in others)
+   ============================================================ */
+.ai-capability .ai-item {
+  margin-bottom: 0.4em;
+  font-size: var(--font-size-small);
+}
+
+/* ============================================================
+   SUMMARY
+   ============================================================ */
+.summary {
+  margin-bottom: 1em;
+  color: var(--color-text-light);
+  line-height: 1.6;
+}
+body.classic .summary {
+  font-style: italic;
+}
+body.compact .summary {
+  margin-bottom: 0.5em;
+}
+
+/* ============================================================
+   EXTRAS (hidden in compact)
+   ============================================================ */
+body.compact .extras-section {
+  display: none;
+}
+
+/* ============================================================
+   PRINT STYLES
+   ============================================================ */
+@media print {
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  body.modern .column-left {
+    background: var(--color-left-bg) !important;
+  }
+  .entry {
+    page-break-inside: avoid;
+  }
+  .resume-section > h2 {
+    page-break-after: avoid;
+  }
+  body.modern .entry {
+    box-shadow: none;
+  }
+  body.modern .skill-badge {
+    background: var(--accent-light) !important;
+  }
+  body.classic a {
+    text-decoration: none;
+  }
+  body.classic .resume-section + .resume-section {
+    border-top-color: #000;
+  }
+  body.compact a {
+    text-decoration: none;
+  }
+}

@@ -5,21 +5,30 @@
 All output files are organized by target and template:
 
 ```
-~/resumes/output/<target>/<template>/
-  full.md, full.html
-  tech.md, tech.html
-  hr.md, hr.html
-~/resumes/output/<target>/kami/          # kami template (no style variants)
-  resume.md
-  resume.html
-  resume.pdf
 ~/resumes/output/<target>/
+  standard/                            # 3 variants × 3 styles
+    modern/
+      full.md, full.html
+      tech.md, tech.html
+      hr.md, hr.html
+    classic/
+      ...
+    compact/
+      ...
+  academic/                            # academic × 3 styles
+    full.md, full.html
+    ...
+  kami/                                # kami (no style variants)
+    resume.md
+    resume.html
+    resume.pdf
   match-report.md (if target provided)
   resume-plan.json
 ```
 
 - `<target>`: the target identifier (e.g., `bytedance-fe`, `alibaba-senior-fe`). Use `_general/` when no target is specified.
-- `<template>`: the template name (e.g., `classic`, `modern`, `kami`).
+- Standard template has 3 variants (modern/classic/compact), each with 3 styles (tech/hr/full).
+- Academic and kami have no variants.
 
 Each subagent assembles its own style's `.md` + `.html` files and writes them directly to the correct subdirectory.
 
@@ -67,8 +76,25 @@ Each entry uses the `one_liner` field from the plan. This section does not count
 ## Format Output
 
 - **.md**: Direct assembly of sections, no additional processing
-- **.html**: Wrap assembled content in template `styles.css`, produce self-contained HTML with embedded CSS; no external dependencies
+- **.html (standard/academic)**: Wrap assembled content in template `styles.css`, produce self-contained HTML with embedded CSS. See Standard Assembly Path below.
 - **.html (kami)**: Template-filling assembly — see Kami Assembly Path below
+
+### Standard Assembly Path (CSS Variant Switching)
+
+Standard template uses one HTML + CSS with body class switching for 3 variants:
+
+1. **Load template**: Read `templates/standard/template-{cn|en}.html`
+2. **Inline CSS**: Replace the `<style>` placeholder with the full content of `templates/standard/styles.css`
+3. **Set variant**: Replace `{{VARIANT}}` in `<body class="{{VARIANT}}">` with `modern`, `classic`, or `compact`
+4. **Fill content**: Generate section HTML from markdown, following the class vocabulary (`.entry`, `.entry-bullets`, `.skill-badge`, etc.)
+5. **Skills display**: variant determines which skills section is visible:
+   - `modern`: `.skill-group` + `.skill-badges` (left column) — generate badge spans
+   - `classic`: `.skills-list` (inline list) — generate `<li>` items
+   - `compact`: `.skills-list` (comma-separated) — same `<li>` but CSS adds commas
+6. **Layout**: CSS automatically handles two-column (modern) vs single-column (classic/compact)
+7. **Hidden sections**: classic/compact hide `.column-left` via CSS; compact hides `.extras-section`
+
+Academic template follows the same path but uses `templates/academic/` directory and has additional sections (publications, research).
 
 ### Kami Assembly Path (Template-Filling)
 
@@ -137,15 +163,26 @@ Final score = sum of dimension scores. Score is recorded per output file in the 
 ## Output Files
 
 ```
-~/resumes/output/<target>/<template>/
-  full.md, full.html
-  tech.md, tech.html
-  hr.md, hr.html
-~/resumes/output/<target>/kami/
-  resume.md
-  resume.html
-  resume.pdf                # WeasyPrint-generated
 ~/resumes/output/<target>/
+  standard/
+    modern/
+      full.md, full.html
+      tech.md, tech.html
+      hr.md, hr.html
+    classic/
+      full.md, full.html
+      ...
+    compact/
+      full.md, full.html
+      ...
+  academic/
+    full.md, full.html
+    tech.md, tech.html
+    hr.md, hr.html
+  kami/
+    resume.md
+    resume.html
+    resume.pdf
   match-report.md (if target provided)
   resume-plan.json
 ```
