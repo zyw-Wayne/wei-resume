@@ -3,8 +3,13 @@
    body.modern | body.classic | body.compact
    ============================================================ */
 
-/* ---------- @page (per-variant via @media print override) ---------- */
-@page { size: A4; margin: 2cm; }
+/* ---------- @page per variant (CSS variables not supported in @page) ---------- */
+body.modern  { page: modern; }
+body.classic { page: classic; }
+body.compact { page: compact; }
+@page modern  { size: A4; margin: 0; }
+@page classic { size: A4; margin: 2cm 2.5cm; }
+@page compact { size: A4; margin: 1.5cm; }
 
 /* ---------- Base Variables ---------- */
 :root {
@@ -73,10 +78,7 @@ body.compact {
   --right-width: 100%;
 }
 
-/* ---------- @page overrides ---------- */
-body.modern  { --page-margin: 0; }
-body.classic { --page-margin: 2cm 2.5cm; }
-body.compact { --page-margin: 1.5cm; }
+/* (page margins handled by @page rules above) */
 
 /* ---------- Reset & Base ---------- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
